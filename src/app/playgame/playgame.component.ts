@@ -12,8 +12,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PlaygameComponent implements OnInit {
   users = null;
   user:any;
+  remaintime:any;
   mytickets:any;
-  numberss:any;
+  alltikets:any;
   paramsid: string;
   isAddMode: boolean;
   loading = false;
@@ -27,15 +28,7 @@ export class PlaygameComponent implements OnInit {
   rn:any;
   lastfive:any;
   allnumbers:any;
-
-
-    private _trialEndsAt;
-    private _diff: number;
-    private _days: number;
-    private _hours: number;
-    private _minutes: number;
-    private _seconds: number;
-
+  classstatus: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,25 +52,6 @@ export class PlaygameComponent implements OnInit {
       this.accountService.mytickets(obj)
           .pipe(first())
           .subscribe((mytickets:any)=>{
-
-          var startDate = new Date("2020-10-02T13:17:00.000Z");
-          var now = new Date()
-          
-          console.log('startDate',startDate)
-          console.log('now',now)
-          var distance = +startDate - +now;
-          if (distance < 0) {
-            console.log('less',distance)
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            console.log('lessseconds',seconds)
-
-          }else{
-            
-            setInterval(() => {
-              
-              this.calculateDiff(startDate);
-              }, 100);            
-          }
           this.tournamentDetails = mytickets.response[0].tournament[0];
           var ticketsCount = mytickets.response[0].tickets.length;
           this.tname=this.tournamentDetails.name;
@@ -92,24 +66,28 @@ export class PlaygameComponent implements OnInit {
                numbers.push(this.mytickets[j]['column'+i]);
             }
             alltikets.push(numbers);
+            //alltikets.push({_id: 2});
 
           }
-          this.numberss=alltikets;
-          this.rn=0;
-          var allnumbers = new Array();
-          this.currentNumber=this.randmNumbers[this.rn];
-          allnumbers.push(this.randmNumbers[this.rn])
-          this.lastfive = allnumbers.slice(Math.max(allnumbers.length - 5, 0));
+          this.alltikets=alltikets;
+          console.log('this.tournamentDetails',this.alltikets)
 
-          setInterval(() => {
-            this.tp=0;
-            this.rn=this.rn+1;
-            allnumbers.push(this.randmNumbers[this.rn])
-            this.currentNumber=this.randmNumbers[this.rn];
-            this.allnumbers=JSON.parse(JSON.stringify(allnumbers));
-            this.lastfive = allnumbers.slice(Math.max(allnumbers.length - 5, 0));
+          var startDate = new Date('2020-10-03 20:29:00');
+          var now = new Date()
+          var distance = +startDate - +now;
+          this.reamingTime(startDate)
+          if (distance <= 0) {
+            setInterval(() => {
+              this.reamingTime(startDate)
+              }, 10000);     
+        
+          }else{
+            setInterval(() => {
+              this.calculateDiff(startDate);
+              }, 100);            
+          }
 
-          }, 30000);
+          
           //  console.log('this.randmNumbers[this.rn]',this.randmNumbers[this.rn]);
           setInterval(() => {
             this.tp=this.tp + 0.333333333333;
@@ -139,6 +117,44 @@ calculateDiff(startDate){
   }
 }
 
+reamingTime(Christmas){
+  var now = new Date()
+  var diffMs = (+now - +Christmas) / 1000; // milliseconds between now & Christmas
+  this.remaintime = 2700 - +diffMs;
+  var totalofmin = diffMs/30
+  if(this.remaintime<0){
+    alert('Game Completed')
+  }
+  console.log('remaintime',this.remaintime)
+  console.log('totalofmin',totalofmin)
+  var allnumbers = new Array();
+  for(let i=0; i<totalofmin; i++){
+    allnumbers.push(this.randmNumbers[i])
+    this.currentNumber=this.randmNumbers[i];
+    this.allnumbers=JSON.parse(JSON.stringify(allnumbers));
+    this.lastfive = allnumbers.slice(Math.max(allnumbers.length - 5, 0));
+  }
+}
+clickedvalue(val:any,row:number,cellno:number,ticketid:string){
+console.log('val',val);
+console.log('row',row);
+console.log('cel',cellno);
+console.log('ticketid',ticketid)
+console.log('swww',this.isDonenumber(val))
+if(this.isDonenumber(val))
+this.classstatus = !this.classstatus;       
+
+}
+
+isDonenumber(val:number){
+  var allnumbers = this.allnumbers;
+  for (let index = 0; index < allnumbers.length; index++) {
+    if (allnumbers[index] == val) {
+      return true
+    }
+}
+
+}
 
   
 }

@@ -15,21 +15,23 @@
               <h2>Last 5 No</h2><br>
       <span *ngFor="let n of lastfive;" class="last_no">{{n}}</span>
           </div>
-          <countdown [config]="{ leftTime: 2700, format: 'm:s' }"></countdown>
+          <countdown [config]="{ leftTime: remaintime, format: 'm:s' }"></countdown>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-6">
         <h2>Tickets</h2>
-        <div  *ngFor="let user of numberss; let a = index">
+
+        <div  *ngFor="let user of alltikets; let a = index">
+            <h2>Ticket -{{mytickets[a]._id}}</h2>
             <table>
                 <tr *ngFor='let in of [0,1,2]; let m = index'>
                     <td *ngFor='let in of [0,1,2,3,4,5,6,7,8]; let i = index' class="{{ 'object-' + a + m + i }}">
                         <div [ngSwitch]='m'>
-                            <div *ngSwitchCase="'0'">{{user[i]}}</div>
-                            <div *ngSwitchCase="'1'">{{user[i+9]}}</div>
-                            <div *ngSwitchCase="'2'">{{user[i+18]}}</div>
+                            <div *ngSwitchCase="'0'"><span *ngIf="user[i] != '0'" (click)="clickedvalue(user[i],0,i+1,mytickets[a]._id)" [class.active]="selectedIndex === i">{{user[i]}}</span></div>
+                            <div *ngSwitchCase="'1'"><span *ngIf="user[i+9] != '0'" (click)="clickedvalue(user[i+9],1,i+10,mytickets[a]._id)" >{{user[i+9]}}</span></div>
+                            <div *ngSwitchCase="'2'"><span *ngIf="user[i+18] != '0'" (click)="clickedvalue(user[i+18],2,i+19,mytickets[a]._id)">{{user[i+18]}}</span></div>
                           </div>
                           
                           
