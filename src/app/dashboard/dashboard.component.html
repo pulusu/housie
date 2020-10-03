@@ -1,0 +1,33 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 20%">Tourney Name	</th>
+            <th style="width: 20%">Tourney Start Date</th>
+            <th style="width: 20%">Registration End Date</th>
+            <th style="width: 20%">Prize</th>
+            <th style="width: 10%">Fee</th>
+            <th style="width: 10%">Action</th>
+           <!-- <th style="width: 10%"></th>-->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.name}}</td>
+            <td>{{user.startdate | date:'medium'}}</td>
+            <td>{{user.registrationenddate | date:'medium'}}</td>
+            <td>{{user.amount}}</td>
+            <td>{{user.ticketprice}}</td>
+            <td><button (click)="joibGame($event, user)">Join</button>
+                <button routerLink="/play-game/{{user._id}}" >Start Game</button>
+            
+            </td>
+            
+           
+        </tr>
+        <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
