@@ -64,6 +64,9 @@ export class AccountService {
     mytickets(params) {
         return this.http.post(`${environment.apiUrl}/orders/mytickets`, params);
     }
+    updateTicketNumber(params){
+        return this.http.put(`${environment.apiUrl}/tickets/updateTicket`, params);
+    }
     getById(id: string) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
     }

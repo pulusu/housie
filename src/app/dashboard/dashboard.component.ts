@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
 
   users = null;
   user:any;
+  orderedcheck=false;
   constructor(private accountService: AccountService) {
     this.user = this.accountService.userValue;
     console.log('user',this.user.id)
@@ -42,6 +43,9 @@ export class DashboardComponent implements OnInit {
               }, (err) => {
                 console.log(err);
               });
+}
+checkIfExists(id){
+ this.orderedcheck = true;
 }
   
 }
