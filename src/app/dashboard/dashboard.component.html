@@ -1,4 +1,8 @@
-<table class="table table-striped">
+<div class="p-4">
+    <div class="container">
+        <div class="row">
+            
+            <table class="table table-striped">
     <thead>
         <tr>
             <th style="width: 20%">Tourney Name	</th>
@@ -17,7 +21,8 @@
             <td>{{user.registrationenddate | date:'medium'}}</td>
             <td>{{user.amount}}</td>
             <td>{{user.ticketprice}}</td>
-            <td><button (click)="joibGame($event, user)">Join</button>
+            <td (mousemove)="checkIfExists(user._id)">
+                <button (click)="joibGame($event, user)" *ngIf="orderedcheck">Join</button>
                 <button routerLink="/play-game/{{user._id}}" >Start Game</button>
             
             </td>
@@ -31,3 +36,6 @@
         </tr>
     </tbody>
 </table>
+</div>
+</div>
+</div>
