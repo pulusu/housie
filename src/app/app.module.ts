@@ -4,8 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //import { NgCircleProgressModule } from 'ng-circle-progress-day-countdown';
+
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { CountdownModule } from 'ngx-countdown';
+
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -17,6 +22,7 @@ import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlaygameComponent } from './playgame/playgame.component';
+import { GameHistoryComponent } from './game-history/game-history.component';
  
 @NgModule({
     imports: [
@@ -25,6 +31,13 @@ import { PlaygameComponent } from './playgame/playgame.component';
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
+        CommonModule,
+        BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot({
+            timeOut: 5000,
+            positionClass: 'toast-top-right',
+            preventDuplicates: true,
+        }),
         NgCircleProgressModule.forRoot({
             // set defaults here
             radius: 100,
@@ -43,7 +56,8 @@ import { PlaygameComponent } from './playgame/playgame.component';
         HomeComponent,
         DashboardComponent,
         PlaygameComponent
-    
+,
+        GameHistoryComponent    
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

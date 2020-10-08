@@ -1,16 +1,17 @@
-<div class="p-4">
-    <div class="container">
-        <div class="row">
-            
-            <table class="table table-striped">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+            <table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th style="width: 20%">Tourney Name	</th>
             <th style="width: 20%">Tourney Start Date</th>
             <th style="width: 20%">Registration End Date</th>
-            <th style="width: 20%">Prize</th>
+            <th style="width: 15%">Prize</th>
             <th style="width: 10%">Fee</th>
-            <th style="width: 10%">Action</th>
+            <th style="width: 15%">Action</th>
            <!-- <th style="width: 10%"></th>-->
         </tr>
     </thead>
@@ -21,10 +22,17 @@
             <td>{{user.registrationenddate | date:'medium'}}</td>
             <td>{{user.amount}}</td>
             <td>{{user.ticketprice}}</td>
-            <td (mousemove)="checkIfExists(user._id)">
-                <button (click)="joibGame($event, user)" *ngIf="orderedcheck">Join</button>
-                <button routerLink="/play-game/{{user._id}}" >Start Game</button>
-            
+            <td>
+                
+
+                <div *ngIf="user.orders; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                    <button routerLink="/play-game/{{user._id}}" class="btn btn-success" >Start Game</button>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <button (click)="joibGame($event, user)" [disabled]="clicked" class="btn btn-primary" >Join</button>
+                </ng-template>
+
             </td>
             
            
@@ -36,6 +44,8 @@
         </tr>
     </tbody>
 </table>
+</div>
+</div>
 </div>
 </div>
 </div>

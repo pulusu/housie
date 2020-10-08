@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="title">Winners</h2>
+            <div class="winner">
+            <div>
+            <h4>Fast Five</h4>
+            <span class="fastfive_winners_list" *ngFor="let ffive of fastFivewinner.slice(0, 2);">{{ffive.rank}}) {{ffive.customers[0].displayname}} </span>
+            <span *ngIf="fastFivewinner.length == 0" >NA</span>
+            </div>
+            </div>
+            <div class="winner">
+            <div>
+            <h4>First Row</h4>
+            <span class="firstrow_winners_list" *ngFor="let fr of firstRowwinner.slice(0, 2);">{{fr.rank}}) {{fr.customers[0].displayname}} </span>
+            <span *ngIf="firstRowwinner.length == 0" >NA</span>
+            </div>
+            </div>
+            <div class="winner">
+            <div>
+            <h4>Second Row</h4>
+            <span class="secondrow_winners_list" *ngFor="let scw of secondRowwinner.slice(0, 2);">{{scw.rank}}) {{scw.customers[0].displayname}} </span>
+            <span *ngIf="secondRowwinner.length == 0" >NA</span>
+            </div>
+            </div>
+            <div class="winner">
+            <div>
+            <h4>Third Row</h4>
+            <span class="thirdrow_winners_list" *ngFor="let th of thirdRowwinner.slice(0, 2);">{{th.rank}}) {{th.customers[0].displayname}} </span>
+            <span *ngIf="thirdRowwinner.length == 0" >NA</span>
+           </div>
+           </div>
+            <div class="winner">
+            <div>
+             <h4> Full Houise Row</h4>
+            <span class="fullhouse_winners_list" *ngFor="let fh of fullHousiewinner.slice(0, 2); ifEmpty emptyTemplate">{{fh.rank}}) {{fh.customers[0].displayname}} </span>
+            <span *ngIf="fullHousiewinner.length == 0" >NA</span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>  
+    <div class="col-md-3"></div> 
+</div>

@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
                     console.log('data',data)
                     if(data.error==false){
                         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                        this.router.navigateByUrl(returnUrl);      
-                        
+                      //  this.router.navigateByUrl(returnUrl);      
+                        window.location.href = returnUrl;
                     }else{
                         this.alertService.error(data.message);
                          this.loading = false;
