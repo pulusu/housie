@@ -1,42 +1,120 @@
-<div class="p-4">
-    <div class="container">
+<div class="container-fluid">
+    
         <div class="row">
-            <h1>Tourney : {{tname}}</h1>
-        </div>
-        <div class="row">
+            <div class="col-md-12">
+                <div class="main-title">
+            <h2>Tourney : {{tname}}</h2>
             <p class="text-center">Total Seconds: {{seconds}}</p>
+            </div>
         </div>
+    </div>
+    
 <div class="row">
     <div class="col-md-6">
-        <circle-progress
-        [percent]="tp"
-        [radius]="100"
-        [outerStrokeWidth]="16"
-        [innerStrokeWidth]="8"
-        [outerStrokeColor]="'#78C000'"
-        [innerStrokeColor]="'#C7E596'"
-        [animation]="false"
-      ></circle-progress> 
-          <span>{{currentNumber}}</span>
-      
-          <div class="row">
-              <p>Last 5 No</p>
-          </div>
-          <div class="row">
-              <p> 
-                       <span *ngFor="let n of lastfive;" class="last_no">{{n}}</span>
-              </p>
-          </div>
-          <div class="row"><h3>Time Left:           <countdown [config]="{ leftTime: remaintime, format: 'm:s' }"></countdown>
-          </h3></div>
+        <div class="card">
+            <div class="card-body">
+                <div *ngIf="gamestart">
+                <div class="row">
+                <div class="col-md-6">
+                    <div class="time-left">
+                        <h3>Time Left</h3>
+                   
+                    <div >
+                        <countdown [config]="{ leftTime: remaintime, format: 'm:s' }"></countdown>
+                      </div>
+                    </div>
+                      <div class="last-five">
+                        
+          
+                       
+                            <h3>Last 5 No</h3>
+                        
+                        <div>
+                           
+                                     <span *ngFor="let n of lastfive;" class="last_no">{{n}}</span>
+                           
+                        </div>
+                      </div>
+                </div>  
+                <div class="col-md-6">
+                    <div class="circle-sec">
+                        <circle-progress
+                        [percent]="tp"
+                        [radius]="100"
+                        [outerStrokeWidth]="16"
+                        [innerStrokeWidth]="8"
+                        [outerStrokeColor]="'#78C000'"
+                        [innerStrokeColor]="'#C7E596'"
+                        [animation]="false"
+                        >
+                        </circle-progress> 
+                        <span>{{currentNumber}}</span>
+                    </div>
+                </div>   
+                </div> 
+               
+            </div>    
+                <hr>    
+       <div class="row">
+        <div class="col-md-12">
+            <div class="winner">
+              <!--  <span class="checkmark">
+                    <div class="checkmark_stem"></div>
+                    <div class="checkmark_kick"></div>
+                </span>-->
+            <div>
+            <h4>Fast Five</h4>
+            <span class="fastfive_winners_list" *ngFor="let ffive of fastFivewinner.slice(0, 2);">{{ffive.rank}}) {{ffive.customers[0].displayname}} </span>
+            <span *ngIf="fastFivewinner.length == 0" >NA</span>
+            </div>
+            </div>
+            <div class="winner">
+            <div>
+            <h4>First Row</h4>
+            <span class="firstrow_winners_list" *ngFor="let fr of firstRowwinner.slice(0, 2);">{{fr.rank}}) {{fr.customers[0].displayname}} </span>
+            <span *ngIf="firstRowwinner.length == 0" >NA</span>
+            </div>
+            </div>
+            <div class="winner">
+            <div>
+            <h4>Second Row</h4>
+            <span class="secondrow_winners_list" *ngFor="let scw of secondRowwinner.slice(0, 2);">{{scw.rank}}) {{scw.customers[0].displayname}} </span>
+            <span *ngIf="secondRowwinner.length == 0" >NA</span>
+            </div>
+            </div>
+            <div class="winner">
+            <div>
+            <h4>Third Row</h4>
+            <span class="thirdrow_winners_list" *ngFor="let th of thirdRowwinner.slice(0, 2);">{{th.rank}}) {{th.customers[0].displayname}} </span>
+            <span *ngIf="thirdRowwinner.length == 0" >NA</span>
+           </div>
+           </div>
+            <div class="winner">
+            <div>
+             <h4> Full Houise Row</h4>
+            <span class="fullhouse_winners_list" *ngFor="let fh of fullHousiewinner.slice(0, 2); ifEmpty emptyTemplate">{{fh.rank}}) {{fh.customers[0].displayname}} </span>
+            <span *ngIf="fullHousiewinner.length == 0" >NA</span>
+        </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>    
     </div>
     <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
         <div class="row">
-        <h2>Tickets</h2>
+            <div class="col-md-12">
+                <h2 class="t-title">Tickets</h2>
+            </div>
+        </div>
 
-        <div  *ngFor="let user of alltikets; let a = index">
-            <p>Ticket -{{mytickets[a]._id}}</p>
+        <div class="row"  *ngFor="let user of alltikets; let a = index">
+           
             <div class="col-md-9">
+                <div class="game-ticket">
+                <p>Ticket -{{mytickets[a]._id}}</p>
                 <table id="{{mytickets[a]._id}}">
                     <tr *ngFor='let in of [0,1,2]; let m = index'>
                         <td *ngFor='let in of [0,1,2,3,4,5,6,7,8]; let i = index' class="{{ 'object-' + m }}" [ngSwitch]='m'>
@@ -47,30 +125,28 @@
                     </tr>
                     
                 </table>
-              
+            </div>
             </div>
             <div class="col-md-3">
+                <div class="win-select">
                 <ul>
-                    <li>  <span  (click)="getcount(mytickets[a]._id,3)">Fast Five</span></li>    
+                    <li class="selected">  <span  (click)="getcount(mytickets[a]._id,3)">Fast Five</span></li>    
                     <li>  <span  (click)="getcount(mytickets[a]._id,0)">First Row</span></li> 
                     <li>  <span  (click)="getcount(mytickets[a]._id,1)">Second Row</span></li>
                     <li>  <span  (click)="getcount(mytickets[a]._id,2)">Third Row</span></li> 
-                    <li>  <span  (click)="getcount(mytickets[a]._id,4)">Full Housie</span></li>              
+                    <li>  <span  (click)="getcount(mytickets[a]._id,5)">Full Housie</span></li>              
                 </ul>
-               
-                
-                
-               
-                
             </div>
-
+        </div>
             <hr>
         </div>
+       
         </div>
+</div>
     </div>
 </div>
 
 
  
-</div>
+
 </div>

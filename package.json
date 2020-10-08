@@ -24,6 +24,7 @@
         "ng-circle-progress": "^1.6.0",
         "ng-circle-progress-day-countdown": "^0.16.1",
         "ngx-countdown": "^10.0.1",
+        "ngx-toastr": "^13.1.0",
         "rxjs": "^6.5.5",
         "tslib": "^2.0.0",
         "zone.js": "^0.10.3"

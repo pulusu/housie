@@ -58,6 +58,18 @@ export class AccountService {
     tournamentsAll() {
         return this.http.get<any>(`${environment.apiUrl}/tournaments/all`);
     }
+    tournamentsAllbyCustomer(params) {
+        return this.http.post<any>(`${environment.apiUrl}/tournaments/getAllbyId`,params);
+    }
+	otp(user: User) {
+        return this.http.post(`${environment.apiUrl}/users/sendOTPregister`, user);
+    }
+    wineersListbyTourney(params) {
+        return this.http.post<any>(`${environment.apiUrl}/winners/winnerslistbyTournament`,params);
+    }
+    winnerCreate(params) {
+        return this.http.post<any>(`${environment.apiUrl}/winners/create`,params);
+    }
     joinTorney(params) {
         return this.http.post(`${environment.apiUrl}/orders/create`, params);
     }

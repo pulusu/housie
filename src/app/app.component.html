@@ -1,11 +1,19 @@
 ﻿<!-- nav -->
+<div class="top-bar">
+
+</div>
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+    
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
         <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
+      
+
     </div>
+    <div class="time-sec"> Date: {{date   | date: "MMM d, yyyy"}}
+        | Time: {{date   | date: "HH:mm:ss"}}</div>
 </nav>
 
 <!-- main app container -->

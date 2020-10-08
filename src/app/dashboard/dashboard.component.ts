@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { AccountService } from '@app/_services';
+import { ToastrService } from 'ngx-toastr';
+import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,40 +15,82 @@ export class DashboardComponent implements OnInit {
   users = null;
   user:any;
   orderedcheck=false;
-  constructor(private accountService: AccountService) {
+  clicked=false;
+  constructor(private accountService: AccountService, 
+    private toastr: ToastrService,
+    private router: Router
+    ) {
     this.user = this.accountService.userValue;
     console.log('user',this.user.id)
   }
 
   ngOnInit() {
-      this.accountService.tournamentsAll()
+    this.user = this.accountService.userValue;
+    var obj = {};  
+    obj['idcustomer']=this.user.id;
+      this.accountService.tournamentsAllbyCustomer(obj)
           .pipe(first())
           .subscribe((datasubmit:any)=>{
+            console.log(datasubmit.tournaments[0].orders.length)
+              for(let i=0; i<datasubmit.tournaments.length; i++){
+                if(datasubmit.tournaments[i].orders.length>0){
+                  datasubmit.tournaments[i]['orders']=true;
+                }else{
+                  datasubmit.tournaments[i]['orders']=false;
+                }
+              }
               this.users = datasubmit.tournaments
               console.log('datasubmit',datasubmit.tournaments)
-              }, (err) => {
+
+              let title ='';
+              let desc = 'Welcome To Kairos Houise';
+              this.tosstersuccess(title,desc)
+
+            }, (err) => {
                 console.log(err);
               });
   }
   joibGame(event, tourny:any) {
-    console.log('tourny',tourny)
-    
+    this.clicked = true;
     var obj = {};  
     obj['idcustomer']=this.user.id;
     obj['idtournament']=tourny._id;
-    obj['numberoftickets']=1;
+    obj['numberoftickets']=2;
     obj['amount']=tourny.ticketprice;
-    console.log('obj',obj)
     this.accountService.joinTorney(obj)
           .pipe(first())
           .subscribe((datasubmit:any)=>{
-                     console.log('join',datasubmit)
+                     console.log('join',datasubmit.orderDetails.idtournament[0])
+                     if(datasubmit.error==false){
+                        let title ='';
+                        let desc = 'Joined Succuessfuly';
+                        this.tosstersuccess(title,desc)
+                        setTimeout(()=>{
+                          this.router.navigate(['/play-game/'+datasubmit.orderDetails.idtournament[0]]);	 
+                          },1000); 
+                    
+                     }else{
+                      let title ='';
+                      let desc = 'Oops wrong.. Try again later';
+                      this.tossterwarning(title,desc)
+                     }
+       
               }, (err) => {
                 console.log(err);
               });
 }
-checkIfExists(id){
- this.orderedcheck = true;
+tossterwarning(title,desc){
+  this.toastr.warning(desc, title);
 }
+tosstererror(title,desc){
+  this.toastr.error(desc, title);
+}
+tosstersuccess(title,desc){
+  this.toastr.success(desc, title);
+}
+tossterinfo(title,desc){
+  this.toastr.info(desc, title);
+}
+
   
 }
