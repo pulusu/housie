@@ -3,15 +3,17 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="table-responsive">
             <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th style="width: 20%">Tourney Name	</th>
-            <th style="width: 20%">Tourney Start Date</th>
-            <th style="width: 20%">Registration End Date</th>
-            <th style="width: 15%">Prize</th>
-            <th style="width: 10%">Fee</th>
-            <th style="width: 15%">Action</th>
+            <th>Tourney Name	</th>
+            <th>Tourney Start Date</th>
+            <th>Registration End Date</th>
+            <th>Prize</th>
+            <th>Fee</th>
+            <th>No. of Tickets</th>
+            <th>Action</th>
            <!-- <th style="width: 10%"></th>-->
         </tr>
     </thead>
@@ -22,6 +24,12 @@
             <td>{{user.registrationenddate | date:'medium'}}</td>
             <td>{{user.amount}}</td>
             <td>{{user.ticketprice}}</td>
+            <td><select  class="form-control">
+                <option value="">Select Tickets</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select></td>
             <td>
                 
 
@@ -38,12 +46,13 @@
            
         </tr>
         <tr *ngIf="!users">
-            <td colspan="4" class="text-center">
+            <td colspan="6" class="text-center">
                 <span class="spinner-border spinner-border-lg align-center"></span>
             </td>
         </tr>
     </tbody>
 </table>
+</div>
 </div>
 </div>
 </div>

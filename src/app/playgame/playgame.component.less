@@ -4,9 +4,10 @@ table{
 td {
     border:1px solid #fff;
     width: 11% !important;
-    height: 45px;
-    line-height: 45px;
+    height: 32px;
+    line-height: 32px;
     text-align: center;
+    font-weight: 500;
 
 }
 
@@ -73,6 +74,7 @@ body {
     background:#0275d8;
      width: 18%;
     display: inline-block;
+    border-radius: 10px;
 }
   
 .sel_active {
@@ -97,32 +99,38 @@ line-height: 20px;
 font-size: 15px;
 }   
 .winner span{
-    color: #f7920d;
+    color: #fff;
 }
 .time-left{
   text-align: center;
     border: 1px solid #ffffff;
-    padding: 10px;
-    border-radius:10px;
+    padding: 40px 10px;
+     border-radius:10px;
 }
 countdown.count-down{
   font-size:36px;
   font-weight: bold;
   padding: 10px;
-  color:#dfc180;
+  background: #dfc180;
+  color:#fff;
+  border-radius: 10px;
 }
 .circle-sec{
   position: relative;
+  text-align: center;
 }
 .circle-sec span{
   position: absolute;
-  top:93px;
-  left:105px;
+  top:38px;
+  left:0px;
+  width:100%;
+  text-align: center;
   font-size: 30px;
+  font-weight: 500;
 }
 .last-five{
   text-align:center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .last-five h3{
   margin-bottom: 15px;
@@ -145,12 +153,14 @@ countdown.count-down{
 }
 
 .win-select ul li{
-  padding:5px;
+  padding:1px 5px;
   border-bottom: 1px solid #fff;
+  cursor: pointer;
 }
 .win-select ul li.selected{
   background: #dfc180;
   color: #0d2144;
+  cursor: not-allowed;
 }
 .t-title{
   text-align: center;
@@ -161,6 +171,7 @@ countdown.count-down{
 .main-title{
   text-align: center;
     color: #dfc180;
+    margin-bottom: 20px;
 }
 hr{
   border-color:#fff;
@@ -190,4 +201,65 @@ hr{
   background-color:#ccc;
   left:8px;
   top:12px;
+}
+.game-ticket table tr td:hover{
+  cursor: pointer;
+}
+.p-relative{
+  position: relative;
+}
+.n-board{
+  position: absolute;
+  right: 0px;
+  width: 100%;
+  top: -48px;
+  left: 0px;
+  z-index: 99;
+}
+.n-board a.btn-warning{
+  border-radius: 0px;
+  border-top-left-radius: 10px;
+  background-color: #dfc180;
+    border-color: #dfc180;
+}
+.n-board .table-responsive{
+  background: #142e5f;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    padding: 10px;
+    box-shadow: 0px 3px 15px rgb(8 14 27 / 38%);
+}
+td.newclass {
+  background:#3c75d8;
+}
+.n-board .table-responsive table tr td{
+  width: 10% !important;
+  height: 35px;
+  line-height: 35px;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.card.p-relative{
+  border-top-left-radius: 0px;
+}
+text tspan{
+  display: none !important;
+}
+.winner.section-dis{
+  background: #dfc180;
+  color: #0d2144;
+ 
+}
+.winner.section-dis h4{
+  border-bottom: 1px solid #0d2144;
+  color: #0d2144;
+}
+@media only screen and (max-width: 767px){
+  .main-title{
+margin-bottom: 55px;
+  }
+  .winner{
+    width: 100%;
+  }
 }

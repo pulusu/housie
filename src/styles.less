@@ -17,17 +17,23 @@ a { cursor: pointer }
     color: #fff;
     width: 100%;
     text-align: right;
+    padding-right: 50px;
 }
 .navbar-dark.bg-dark{
     background-color:#0d2144 !important;
+    display: block;
+    margin-top: 20px;
 }
-.top-bar{
+.top-bar {
     background: #dfc180;
     padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0px;
 }
 .app-container.bg-light{
     background: #080d1a !important;
-    padding-top: 30px;
+    padding-top: 20px;
 }
 body{
     background: #080d1a !important;   
@@ -52,12 +58,16 @@ margin-top: 10px;
 .table td, .table th{
     vertical-align: middle;
 }
+.table thead tr{
+    background-image: linear-gradient(#6f98f7, #427bff);
+}
 .card{
     background: #0a2144;
     border: 0;
     border-top: 10px solid #132e5f;
     border-radius: 10px;
     color:#fff;
+    margin-bottom: 30px;
 }
 .table{
     color:#fff;
@@ -73,7 +83,141 @@ hr{
 }
 .form-control{
     background-color: transparent;
+    color: #ffffff !important;
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: transparent;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #8cbcf9;
+    margin: 0 0 15px;
+    padding: 15px 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius:0;
+    height: auto;
+}
+.form-control:focus{
+    box-shadow: none;
+}
+select.form-control option{
+    color: #080d1a;
 }
 .form-control:focus{
     background-color: transparent;
+}
+.footer-bar {
+    background: #0a2144;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    color: #dfc180;
+    padding: 5px;
+    text-align: center;
+}
+.form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4aaf50;
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.logo h2{
+    text-align: center;
+    color: #dfc180;
+    text-transform: uppercase;
+    font-family: fantasy;
+    margin-bottom: 0px;
+}
+.wel-text{
+    color: #dfc180;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+.wel-text span{
+    color:#467fff;
+}
+.navbar-expand .navbar-nav{
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: absolute;
+    right: 0px;
+    z-index: 99;
+    background: #fff;
+    width: 40%;
+    top: 40px;
+
+}
+.navbar-expand .navbar-nav .nav-link{
+    padding: 2px 10px;
+    border-bottom: 1px solid #427bff;
+    color: #0d2144;
+}
+.navbar-expand .navbar-nav .nav-link:hover , .navbar-expand .navbar-nav .nav-link.active{
+    color: #4680fe;
+}
+a.menu-click {
+    color: #dfc180;
+    position: absolute;
+    right:15px;
+    top:-8px;
+    font-size: 24px;
+}
+a.menu-click:hover{
+    color:#427bff
+}
+.login-sec {
+    height: 100vh;
+}
+.form{
+    position: relative;
+    z-index: 1;
+}
+@media only screen and (max-width: 767px){
+    .navbar-nav{
+display: inline-flex;
+text-align: left;
+    }
+    .navbar-dark.bg-dark{
+        text-align:center;
+    }
+    .time-sec{
+        text-align: center;
+        padding-right:0px ;
+    }
+    .logo{
+        background: #dfc180;
+    }
+    .logo h2{
+        padding: 5px;
+        margin: 5px 0px;
+        color: #0d2144;
+    }
+    .login-sec .col-md-8{
+        display: none;
+    }
+    .login-bg{
+        height: 100vh !important;
+    }
+    .navbar-expand .navbar-nav{
+        right: 15px;
+        left: 15px;
+        width: auto;
+        top: -54px;
+    }
+    a.menu-click{
+        left: 15px;
+        right:auto;
+        top: -98px;
+    }
+    
 }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-registration-login-example": {
+    "fabfive-housie": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-registration-login-example",
+            "outputPath": "dist/fabfive-housie",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-registration-login-example:build"
+            "browserTarget": "fabfive-housie:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-registration-login-example:build:production"
+              "browserTarget": "fabfive-housie:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-registration-login-example:build"
+            "browserTarget": "fabfive-housie:build"
           }
         },
         "test": {
@@ -116,18 +116,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-registration-login-example:serve"
+            "devServerTarget": "fabfive-housie:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-registration-login-example:serve:production"
+              "devServerTarget": "fabfive-housie:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-registration-login-example",
+  "defaultProject": "fabfive-housie",
   "cli": {
     "analytics": "ee72d4a9-4d2d-4c64-a627-7e5add8da5d0"
   }

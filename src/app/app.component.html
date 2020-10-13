@@ -1,23 +1,43 @@
 ﻿<!-- nav -->
-<div class="top-bar">
+<div class="top-bar" >
 
 </div>
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
-    
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-        <a class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+<div class="row align-items-center">
+    <div class="col-md-4">
       
+        <h4 class="wel-text">
+            Welcome<br>
+                <span>{{user.displayname}}</span>
+        </h4>
+            
+       
+    </div>
+    <div class="col-md-4">
+    <div class="logo">
+        <h2  routerLink="/dashboard" >Housie</h2>
+    </div>  
+    </div>
+    <div class="col-md-4">
+        <div class="time-sec"> Date: {{date   | date: "MMM d, yyyy"}}
+            | Time: {{date   | date: "HH:mm:ss"}}</div>
+<div class="user-sec">
+    <a class="menu-click" (click)="togglemenu()" ><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+
+                <div class="navbar-nav" *ngIf="showMyContainer">
+                <a class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+                <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+                <a class="nav-item nav-link" (click)="logout()">Logout</a>
+                  
+            </div>
+        </div>
 
     </div>
-    <div class="time-sec"> Date: {{date   | date: "MMM d, yyyy"}}
-        | Time: {{date   | date: "HH:mm:ss"}}</div>
+</div>
 </nav>
 
 <!-- main app container -->
-<div class="app-container" [ngClass]="{ 'bg-light': user }">
+<div class="app-container" [ngClass]="{ 'bg-light': user }" >
     <alert></alert>
     <router-outlet></router-outlet>
 </div>

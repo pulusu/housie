@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-title">
+        <h2>Tourney : {{tname}}</h2>
+        <p class="text-center">Total Seconds: {{seconds}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+<div class="col-md-3" >
+      
+</div>
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-body">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-center">Start Date : {{tournamentDetails.startdate}}</p>
+            <div class="time-left m-b-20">
+                <h3>Game Starts in</h3>
+           
+            <div>
+                <countdown [config]="{ leftTime: remaintime, format: 'm:s' }"></countdown>
+              </div>
+            </div>
+              
+        </div>  
+        <div class="col-md-12">
+            <h2 class="t-title">Tickets</h2>
+        </div>
+    </div>
+
+    <div class="row"  *ngFor="let user of alltikets; let a = index">
+       
+        <div class="col-md-12">
+            <div class="game-ticket">
+            <p>Ticket -{{mytickets[a]._id}}</p>
+            <table id="{{mytickets[a]._id}}">
+                <tr *ngFor='let in of [0,1,2]; let m = index'>
+                    <td *ngFor='let in of [0,1,2,3,4,5,6,7,8]; let i = index' class="{{ 'object-' + m }}" [ngSwitch]='m'>
+                            <div *ngSwitchCase="'0'" class="{{m}}_{{mytickets[a]._id}}"  [ngClass]="{'sel_active': allcolumnres[a][i] == user[i] && allcolumnres[a][i] != 0}"><span *ngIf="user[i] != '0'" >{{user[i]}} </span></div>
+                            <div *ngSwitchCase="'1'" class="{{m}}_{{mytickets[a]._id}}" [ngClass]="{'sel_active': allcolumnres[a][i+9] == user[i+9] && allcolumnres[a][i+9] != 0}"><span *ngIf="user[i+9] != '0'"  >{{user[i+9]}}</span></div>
+                            <div *ngSwitchCase="'2'" class="{{m}}_{{mytickets[a]._id}}"  [ngClass]="{'sel_active': allcolumnres[a][i+18] === user[i+18] && allcolumnres[a][i+18] != 0}"><span *ngIf="user[i+18] != '0'" >{{user[i+18]}}</span></div>
+                   </td>
+                </tr>
+                
+            </table>
+        </div>
+        </div>
+        <hr>
+    </div>
+   
+    </div>
+</div>
+</div>
+<div class="col-md-3" >
+      
+</div>
+</div>
+
+
+
+
+</div>

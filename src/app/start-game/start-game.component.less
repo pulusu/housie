@@ -1,0 +1,173 @@
+table{
+    width:100%;
+  }
+  td {
+      border:1px solid #fff;
+      width: 11% !important;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+  
+  }
+  
+  body {
+      font-family: sans-serif;
+    }
+    
+    .base-timer {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+    
+    .base-timer__svg {
+      transform: scaleX(-1);
+    }
+    
+    .base-timer__circle {
+      fill: none;
+      stroke: none;
+    }
+    
+    .base-timer__path-elapsed {
+      stroke-width: 7px;
+      stroke: grey;
+    }
+    
+    .base-timer__path-remaining {
+      stroke-width: 7px;
+      stroke-linecap: round;
+      transform: rotate(90deg);
+      transform-origin: center;
+      transition: 1s linear all;
+      fill-rule: nonzero;
+      stroke: currentColor;
+    }
+    
+    .base-timer__path-remaining.green {
+      color: rgb(65, 184, 131);
+    }
+    
+    .base-timer__path-remaining.orange {
+      color: orange;
+    }
+    
+    .base-timer__path-remaining.red {
+      color: red;
+    }
+    
+    .base-timer__label {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    span.last_no {
+      border: 1px solid #0275d8;
+      padding: 11px;
+      margin-right: 5px;
+      background:#0275d8;
+       width: 18%;
+      display: inline-block;
+  }
+    
+  .sel_active {
+      background:#3c75d8;
+      cursor: not-allowed;
+  }
+  .winner{
+  border: 1px solid #dfc180;
+  padding: 5px 10px;
+  color:#fff;
+  border-radius: 10px;
+  width:80%;
+  margin: 0 auto;
+  margin-top: 10px;
+  }
+  .winner h4{
+  margin-bottom: 5px;
+  color: #dfc180;
+  font-weight: bold;
+  border-bottom: 1px solid #dfc180;
+  line-height: 20px;
+  font-size: 15px;
+  }   
+  .winner span{
+      color: #f7920d;
+  }
+  .time-left{
+    text-align: center;
+      border: 1px solid #ffffff;
+      padding: 10px;
+      border-radius:10px;
+  }
+  countdown.count-down{
+    font-size:36px;
+    font-weight: bold;
+    padding: 10px;
+    color:#dfc180;
+  }
+  .circle-sec{
+    position: relative;
+  }
+  .circle-sec span{
+    position: absolute;
+    top:93px;
+    left:105px;
+    font-size: 30px;
+  }
+  .last-five{
+    text-align:center;
+    margin-top: 20px;
+  }
+  .last-five h3{
+    margin-bottom: 15px;
+  }
+  .game-ticket{
+    border: 1px solid #fff;
+      padding-top: 5px;
+      margin-bottom: 15px;
+  }
+  .game-ticket p{
+    text-align: center;
+      margin-bottom: 5px;
+  }
+  .win-select ul{
+    list-style-type: none;
+    padding: 0px;
+    background: #0d2144;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  
+  .win-select ul li{
+    padding:5px;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+  }
+  .win-select ul li.selected{
+    background: #dfc180;
+    color: #0d2144;
+    cursor: not-allowed;
+  }
+  .t-title{
+    text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+  }
+  .main-title{
+    text-align: center;
+      color: #dfc180;
+  }
+  hr{
+    border-color:#fff;
+  }
+  .m-b-20{
+margin-bottom: 20px;
+  }
+  

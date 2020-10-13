@@ -3,7 +3,7 @@
    
     <div class="card-body">
         <h3 class="title-l">Login</h3>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <input type="text" placeholder="Mobile" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
