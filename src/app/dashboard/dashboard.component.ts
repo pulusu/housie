@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   user:any;
   orderedcheck=false;
   clicked=false;
+  selectedOptiontickets:number;
   constructor(private accountService: AccountService, 
     private toastr: ToastrService,
     private router: Router
@@ -44,7 +45,7 @@ export class DashboardComponent implements OnInit {
 
               let title ='';
               let desc = 'Welcome To Kairos Houise';
-              this.tosstersuccess(title,desc)
+           //   this.tosstersuccess(title,desc)
 
             }, (err) => {
                 console.log(err);

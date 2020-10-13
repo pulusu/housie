@@ -14,6 +14,7 @@ import {formatDate } from '@angular/common';
 })
 export class PlaygameComponent implements OnInit {
   users = null;
+  showMyContainer = false;
   user:any;
   remaintime:any;
   mytickets:any;
@@ -45,6 +46,14 @@ export class PlaygameComponent implements OnInit {
   date:Date;
   today= new Date();
   jstoday = '';
+  fastfivewinners:any;
+  firstrowwinners:any;
+  secondrowwinners:any;
+  thirdrowwinners:any;
+  fourcornerswinners:any;
+  fullhousewinners:any;
+  timer = null;
+  timerwinner = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,43 +65,55 @@ export class PlaygameComponent implements OnInit {
 
     ) {
     this.user = this.accountService.userValue;
-    console.log('user',this.user.id)
+    console.log('user',this.user)
   }
 
   ngOnInit() {
     this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss', 'en-US');
     var res= this.jstoday.slice(-2); 
-    if(res > '30'){
+    if(res >= '30'){
         this.tp = +res-30;
-        console.log('g', res)
     }else{
         this.tp = res;
-        console.log('l', res)
     }
-    console.log('less', this.tp);
-    var p = ((this.tp/30)*100).toFixed(4)
-    console.log('p',p)
-    
+    var p = ((this.tp/30)*100).toFixed(2)
     this.tp = parseFloat(p);
+    console.log('p',p)
     this.paramsid = this.route.snapshot.params['id'];
     var obj = {};  
     obj['idcustomer']=this.user.id;
     obj['idtournament']=this.paramsid;
     this.wineersListbyTourney(obj)
     
-    setInterval(() => {
+    this.timerwinner = setInterval(() => {
       this.wineersListbyTourney(obj)
-    }, 500);   
+    }, 100);   
 
     //console.log('obj-params',obj)
 
       this.accountService.mytickets(obj)
           .pipe(first())
           .subscribe((mytickets:any)=>{
+            console.log('mytickets',mytickets)
+            if(mytickets.response.length==0){
+              let title ='';
+              let desc = 'You don"t have tickets';
+              this.tossterwarning(title,desc)
+               setTimeout(()=>{
+                this.router.navigate(['/dashboard/']);	 
+                },1000); 
+
+            }
           this.tournamentDetails = mytickets.response[0].tournament[0];
           var ticketsCount = mytickets.response[0].tickets.length;
           this.tname=this.tournamentDetails.name;
           this.seconds=this.tournamentDetails.seconds;
+          this.fastfivewinners=this.tournamentDetails.fastfivewinners;
+          this.firstrowwinners=this.tournamentDetails.firstrowwinners;
+          this.secondrowwinners=this.tournamentDetails.secondrowwinners;
+          this.thirdrowwinners=this.tournamentDetails.thirdrowwinners;
+          this.fullhousewinners=this.tournamentDetails.fullhousewinners;
+          this.fourcornerswinners=this.tournamentDetails.fourcornerswinners;
           var randmNumbers =this.tournamentDetails.randomnumbers;
           this.randmNumbers =  randmNumbers.split(",");
           this.mytickets=mytickets.response[0].tickets;
@@ -114,48 +135,33 @@ export class PlaygameComponent implements OnInit {
           }
           this.allcolumnres = allcolumnres;
           this.alltikets=alltikets;
-          var startDate = new Date('2020-10-08 11:35:00'); 
-          var now = new Date()
-          var distance = +startDate - +now;
+
+          var startDate = new Date(this.tournamentDetails.startdate); 
           this.reamingTime(startDate)
-          if (distance <= 0) {
-            setInterval(() => {
-              this.reamingTime(startDate)
-              }, 100);     
-        
-          }else{
-            setInterval(() => {
-              this.calculateDiff(startDate);
-              }, 100);            
-          }
-          setInterval(() => {
-            this.tp=this.tp + 0.333333333333;
-            console.log('this.tp',this.tp)
-            if(this.tp>=100){
-              this.tp=0;
-            } 
-            }, 100);
 
           
-          
+          this.timer = setInterval(() => {
+           this.reamingTime(startDate)
+                      this.tp=this.tp + 0.50015;
+                      if(this.tp>=100){
+                        this.tp=0;
+                      } 
+                        //console.log(this.tp)
+                      }, 150);
+                      
+    
           }, (err) => {
                 console.log(err);
               });
 
+                        
   }
-calculateDiff(startDate){
-  var now = new Date().getTime();
-  var distance = +startDate - +now;
-  if (distance < 0) {
-    window.location.reload();
-  }
-}
 
 reamingTime(Christmas){
   var now = new Date()
   var diffMs = (+now - +Christmas) / 1000; // milliseconds between now & Christmas
   if(diffMs<0){
-    this.gamestart =false;
+       this.router.navigate(['/start-game/'+this.paramsid]);	 
   }
   this.remaintime = 2700 - +diffMs;
   var totalofmin = diffMs/30
@@ -163,6 +169,9 @@ reamingTime(Christmas){
     let title ='';
     let desc = 'Game Completed';
     this.tossterwarning(title,desc)
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
     setTimeout(()=>{
       this.router.navigate(['/game-history/'+this.paramsid]);	 
       },1000); 
@@ -174,6 +183,9 @@ reamingTime(Christmas){
     this.allnumbers=JSON.parse(JSON.stringify(allnumbers));
     this.lastfive = allnumbers.slice(Math.max(allnumbers.length - 5, 0));
   }
+ // console.log('allnumbers',allnumbers)
+
+
 }
 clickedvalue(event,val:number,row:number,cellno:number,ticketid:string){
 
@@ -203,15 +215,15 @@ upateTicket(obj) {
   this.accountService.updateTicketNumber(obj)
         .pipe(first())
         .subscribe((dataresponse:any)=>{
-          console.log('dataresponse',dataresponse)
+//          console.log('dataresponse',dataresponse)
             }, (err) => {
               console.log(err);
             });
 }
-getcount(ticketId,gametype){
-console.log(ticketId,gametype)
+getcount(event,ticketId,gametype){
+//console.log(ticketId,gametype)
 var clss = this.elementRef.nativeElement.querySelectorAll('.sel_active');
-console.log('clss',clss)
+//console.log('clss',clss)
 var game123 =gametype+'_'+ticketId;
 
 var count=0;
@@ -229,6 +241,8 @@ if(gametype==0){
     objwinner['idtournament']=this.paramsid;
     objwinner['idcustomer']=this.user.id;
     this.firstSecondThirdRow(objwinner);
+    event.srcElement.classList.add('selected');
+
   }else{
     let title ='';
     let desc = 'Must be select 5 numers in 1st row';
@@ -243,6 +257,8 @@ if(gametype==0){
     objwinner['idtournament']=this.paramsid;
     objwinner['idcustomer']=this.user.id;
     this.firstSecondThirdRow(objwinner);
+    event.srcElement.classList.add('selected');
+
   }else{
     let title ='';
     let desc = 'Must be select 5 numers in 2nd row';
@@ -256,6 +272,8 @@ if(gametype==0){
     objwinner['idtournament']=this.paramsid;
     objwinner['idcustomer']=this.user.id;
     this.firstSecondThirdRow(objwinner);
+    event.srcElement.classList.add('selected');
+
   }else{
     let title ='';
     let desc = 'Must be select 5 numers in 3rd row';
@@ -263,14 +281,15 @@ if(gametype==0){
   }
 }else if(gametype==3){
   
-  this.fastfive(ticketId,clss)
+  this.fastfive(event,ticketId,clss)
+
   
 }else if(gametype==5){
-  this.fullhouise(ticketId,clss)
+  this.fullhouise(event,ticketId,clss)
 }
 
 }
-fastfive(ticketId,clss){
+fastfive(event,ticketId,clss){
 var count=0;
 var game1 =0+'_'+ticketId;
 var game2 =1+'_'+ticketId;
@@ -289,6 +308,8 @@ var game3 =2+'_'+ticketId;
     objwinner['idtournament']=this.paramsid;
     objwinner['idcustomer']=this.user.id;
     this.firstSecondThirdRow(objwinner);
+    event.srcElement.classList.add('selected');
+
   }else{
     let title ='';
     let desc = 'Must be select 5 numers';
@@ -334,7 +355,7 @@ firstSecondThirdRow(objwinner){
             });  
 }
 
-fullhouise(ticketId,clss){
+fullhouise(event,ticketId,clss){
   var count=0;
   var game1 =0+'_'+ticketId;
   var game2 =1+'_'+ticketId;
@@ -353,6 +374,7 @@ fullhouise(ticketId,clss){
       objwinner['idtournament']=this.paramsid;
       objwinner['idcustomer']=this.user.id;
       this.firstSecondThirdRow(objwinner);
+      event.srcElement.classList.add('selected');
     }else{
       let title ='';
       let desc = 'Must be select all numers';
@@ -372,7 +394,27 @@ wineersListbyTourney(objwinner){
             this.thirdRowwinner = wineersListbyTourney.winners.thirdRow;
             this.fullHousiewinner = wineersListbyTourney.winners.fullHousie;
             this.fourCornerswinner = wineersListbyTourney.winners.fourCorners;
-            }, (err) => {
+            if((this.fastfivewinners<=this.fastFivewinner.length) && (this.firstrowwinners <= this.firstRowwinner.length) && (this.secondrowwinners <= this.secondRowwinner.length) && (this.thirdrowwinners <= this.thirdRowwinner.length) && (this.fullhousewinners <= this.fullHousiewinner.length)){
+              let title ='';
+              let desc = 'Game Completed';
+              console.log('Game Completed')
+              this.tossterwarning(title,desc)
+              if (this.timerwinner) {
+                clearInterval(this.timerwinner); 
+              }
+              if (this.timer) {
+                clearInterval(this.timer); 
+              }
+              setTimeout(()=>{
+               this.router.navigate(['/game-history/'+this.paramsid]);	 
+              },3000); 
+
+              }
+
+            
+
+  
+          }, (err) => {
               console.log(err);
             });  
 }
@@ -389,5 +431,14 @@ tossterinfo(title,desc){
   this.toastr.info(desc, title);
 }
 
-
+ngOnDestroy() {
+  // Will clear when component is destroyed e.g. route is navigated away from.
+  
+  if (this.timerwinner) {
+    clearInterval(this.timerwinner); 
+  }
+  if (this.timer) {
+    clearInterval(this.timer); 
+  }
+}
 }

@@ -21,7 +21,7 @@ export class AccountService {
     }
 
     public get userValue(): User {
-        return this.userSubject.value;
+        return JSON.parse(localStorage.getItem('housieuserdetails'));
     }
 
     login(mobile, password) {
