@@ -65,7 +65,7 @@ export class AccountService {
         return this.http.post(`${environment.apiUrl}/users/sendOTPregister`, user);
     }
     wineersListbyTourney(params) {
-        return this.http.post<any>(`${environment.apiUrl}/winners/winnerslistbyTournament`,params);
+        return this.http.post<any>(`${environment.apiUrl}/winners/winnersbyTournament`,params);
     }
     winnerCreate(params) {
         return this.http.post<any>(`${environment.apiUrl}/winners/create`,params);

@@ -23,7 +23,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlaygameComponent } from './playgame/playgame.component';
 import { GameHistoryComponent } from './game-history/game-history.component';
 import { StartGameComponent } from './start-game/start-game.component';
- 
+import { AdminUserComponent } from './admin-user/admin-user.component';;
+import { TournamentAddComponent } from './tournament-add/tournament-add.component'
+;
+import { TournamentListComponent } from './tournament-list/tournament-list.component' ;
+import { HowToPlayComponent } from './how-to-play/how-to-play.component'
+;
+import { AboutUsComponent } from './about-us/about-us.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -61,8 +67,13 @@ import { StartGameComponent } from './start-game/start-game.component';
         PlaygameComponent
 ,
         GameHistoryComponent ,
-        StartGameComponent   
-    ],
+        StartGameComponent ,
+        AdminUserComponent ,
+        TournamentAddComponent ,
+        TournamentListComponent
+,
+        HowToPlayComponent ,
+        AboutUsComponent   ],
     providers: [
  //       { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
    //     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -12,7 +12,7 @@
             <th>Registration End Date</th>
             <th>Prize</th>
             <th>Fee</th>
-            <th>No. of Tickets</th>
+            
             <th>Action</th>
            <!-- <th style="width: 10%"></th>-->
         </tr>
@@ -24,12 +24,7 @@
             <td>{{user.registrationenddate | date:'medium'}}</td>
             <td>{{user.amount}}</td>
             <td>{{user.ticketprice}}</td>
-            <td><select  class="form-control">
-                <option value="">Select Tickets</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select></td>
+            
             <td>
                 
 
@@ -38,7 +33,13 @@
                     <button routerLink="/play-game/{{user._id}}" class="btn btn-success" >Start Game</button>
                 </ng-template>
                 <ng-template #elseBlock>
-                    <button (click)="joibGame($event, user)" [disabled]="clicked" class="btn btn-primary" >Join</button>
+                    <select (change)="handleChange($event.target.selectedIndex)" class="form-control">
+                        <option value="">Select Tickets</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <button (click)="joibGame($event, user)" [disabled]="clicked" class="btn btn-success" >Join</button>
                 </ng-template>
 
             </td>

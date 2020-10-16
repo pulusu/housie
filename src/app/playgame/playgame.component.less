@@ -255,11 +255,42 @@ text tspan{
   border-bottom: 1px solid #0d2144;
   color: #0d2144;
 }
+.n-board a.btn-warning.win-mobile{
+display:none;
+}
+
 @media only screen and (max-width: 767px){
   .main-title{
 margin-bottom: 55px;
   }
+  .n-board a.btn-warning.win-mobile{
+border-radius: 0px;
+    border-top-right-radius: 10px;
+	float:right;
+	display:block;
+}
   .winner{
     width: 100%;
   }
+  .time-left {
+   
+    border: 0px;
+     padding: 0px;
+     margin-bottom: 20px;
+}
+.card.p-relative hr{
+display:none;
+}
+.win-mobile-sec{
+position: absolute;
+    background: #0a2144;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding-bottom: 10px;
+    z-index: 99;
+    box-shadow: 0 2px 7px #000;
+  
+}
 }

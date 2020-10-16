@@ -1,0 +1,159 @@
+<h1 *ngIf="!isAddMode">Add User</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="name">Name</label>
+            <input type="text" formControlName="ename" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ename.errors }" />
+            <div *ngIf="submitted && f.ename.errors" class="invalid-feedback">
+                <div *ngIf="f.ename.errors.required">Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="address">Address</label>
+            <input type="text" formControlName="eaddress" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.eaddress.errors }" />
+            <div *ngIf="submitted && f.eaddress.errors" class="invalid-feedback">
+                <div *ngIf="f.eaddress.errors.required">Address is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="displayname">Display Name</label>
+            <input type="text" formControlName="displayname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.displayname.errors }" />
+            <div *ngIf="submitted && f.displayname.errors" class="invalid-feedback">
+                <div *ngIf="f.displayname.errors.required">Display Name is required</div>
+            </div>
+        </div>
+		<div class="form-group col">
+            <label for="city">City / Village</label>
+            <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                <div *ngIf="f.city.errors.required">City is required</div>
+            </div>
+        </div>
+		
+        <!--<div class="form-group col">
+            <label for="password">
+                Password
+                <em *ngIf="!isAddMode">(Leave blank to keep the same password)</em>
+            </label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>-->
+    </div>
+	<div class="form-row">
+        <div class="form-group col">
+            <label for="email">Email Id</label>
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="pincode">Pincode</label>
+            <input type="text" formControlName="pincode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }" />
+            <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+            </div>
+        </div>
+    </div>
+	<div class="form-row">
+        <div class="form-group col">
+            <label for="mobile">Mobile Number</label>
+            <input type="text" formControlName="emobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emobile.errors }" maxlength="10" pattern="((\\+91-?)|0)?[0-9]{10}$"  />
+            <div *ngIf="submitted && f.emobile.errors" class="invalid-feedback">
+                <div *ngIf="f.emobile.errors.required">Mobile Number is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="image">Profile Image</label>
+            <input type="file" formControlName="image" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.image.errors }" />
+            <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+                <div *ngIf="f.image.errors.required">Image is required</div>
+            </div>
+        </div>
+    </div>
+	<div class="form-row">
+        <div class="form-group col">
+            <label for="gender">Gender</label>
+            <!--<input type="radio" formControlName="female" [ngClass]="{ 'is-invalid': submitted && f.female.errors }" />Male-->
+			<label class="radio-inline"> <input type="radio" class="form-group" name="gender">Female</label>
+            <label class="radio-inline"><input type="radio" class="form-group" name="gender">Male</label>
+           
+        </div>
+        <div class="form-group col">
+            <label for="country">Country</label>
+            <select formControlName="country" placeholder="Select Country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" >
+                    <option *ngFor="let country of countries" [value]="country.value">{{country.viewValue}}</option>
+                </select>	
+			
+            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                <div *ngIf="f.country.errors.required">Country is required</div>
+            </div>
+        </div>
+    </div>
+	<div class="form-row">
+        <div class="form-group col" data-provide="datepicker">
+            <label for="firstName">DOB</label>
+            <input type="dobpicker" formControlName="dob" class="form-control datepicker" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+            <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                <div *ngIf="f.dob.errors.required">Date of birth is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="state">State</label>
+            <select formControlName="state" placeholder="Select State" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }" >
+                    <option *ngFor="let state of states" [value]="state.value">{{state.viewValue}}</option>
+                </select>
+            <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                <div *ngIf="f.state.errors.required">State is required</div>
+            </div>
+        </div>
+    </div>
+	
+	<div class="form-row">
+        <div class="form-group col">
+            <label for="firstName">Pan Card</label>
+            <input type="file" formControlName="pancard" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pancard.errors }" />
+            <div *ngIf="submitted && f.pancard.errors" class="invalid-feedback">
+                <div *ngIf="f.pancard.errors.required">Pan Card is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="state">Bank Passbook</label>
+            <input type="file" formControlName="bankpassbook" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.bankpassbook.errors }" />
+            <div *ngIf="submitted && f.bankpassbook.errors" class="invalid-feedback">
+                <div *ngIf="f.bankpassbook.errors.required">State is required</div>
+            </div>
+        </div>
+    </div>
+	
+	<div class="form-row">
+        <div class="form-group col" data-provide="datepicker">
+            <label for="firstName">New Password</label>
+            <input type="password" formControlName="newpassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.newpassword.errors }" />
+            <div *ngIf="submitted && f.newpassword.errors" class="invalid-feedback">
+                <div *ngIf="f.newpassword.errors.required">New Password is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="state">Confirm Password</label>
+            <input type="password" formControlName="confirm_newpassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirm_newpassword.errors }" />
+            <div *ngIf="submitted && f.confirm_newpassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirm_newpassword.errors.required">Confirm Password is required</div>
+            </div>
+        </div>
+    </div>
+	
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/users" class="btn btn-link">Cancel</a>
+    </div>
+</form>
