@@ -10,11 +10,19 @@ import {formatDate } from '@angular/common';
 @Component({
   selector: 'app-playgame',
   templateUrl: './playgame.component.html',
-  styleUrls: ['./playgame.component.less']
+  styleUrls: ['./playgame.component.less'],
+  host: {
+  "(window:resize)":"onWindowResize($event)"
+  }
 })
 export class PlaygameComponent implements OnInit {
   users = null;
+  isMobile: boolean = false;
+  width:number = window.innerWidth;
+  height:number = window.innerHeight;
+  mobileWidth:number  = 760;
   showMyContainer = false;
+  showMyContainermobile=false;
   user:any;
   remaintime:any;
   mytickets:any;
@@ -54,6 +62,11 @@ export class PlaygameComponent implements OnInit {
   fullhousewinners:any;
   timer = null;
   timerwinner = null;
+  outofffaastfive:any;
+  outofffirstRow:any;
+  outoffsecondRow:any;
+  outoffthirdRow:any;
+  outofffullHousie:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -69,6 +82,7 @@ export class PlaygameComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isMobile = this.mobileWidth < this.width;
     this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss', 'en-US');
     var res= this.jstoday.slice(-2); 
     if(res >= '30'){
@@ -387,6 +401,12 @@ wineersListbyTourney(objwinner){
   this.accountService.wineersListbyTourney(objwinner)
         .pipe(first())
         .subscribe((wineersListbyTourney:any)=>{
+          console.log('wineersListbyTourney',wineersListbyTourney.outoff.fastFive)
+            this.outofffaastfive = wineersListbyTourney.outoff.fastFive;
+            this.outofffirstRow = wineersListbyTourney.outoff.firstRow;
+            this.outoffsecondRow = wineersListbyTourney.outoff.secondRow;
+            this.outoffthirdRow = wineersListbyTourney.outoff.thirdRow;
+            this.outofffullHousie = wineersListbyTourney.outoff.fullHousie;
             this.wineersList = wineersListbyTourney.winners;
             this.fastFivewinner = wineersListbyTourney.winners.fastFive;
             this.firstRowwinner = wineersListbyTourney.winners.firstRow;
@@ -430,7 +450,11 @@ tosstersuccess(title,desc){
 tossterinfo(title,desc){
   this.toastr.info(desc, title);
 }
-
+onWindowResize(event) {
+  this.width = event.target.innerWidth;
+  this.height = event.target.innerHeight;
+  this.isMobile = this.mobileWidth < this.width;
+}
 ngOnDestroy() {
   // Will clear when component is destroyed e.g. route is navigated away from.
   

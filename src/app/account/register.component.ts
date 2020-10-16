@@ -21,11 +21,22 @@ export class RegisterComponent implements OnInit {
     submitted = false;
 	showotpForm = false;
 	otpsubmitted = false;
+	selectedCompany: string = '';
+	//selectedCompanyOthers: string = '';
 companies: company[] = [
-    {value: '1', viewValue: 'Kairos'},
-    {value: '2', viewValue: 'Solunus'},
+    {value: 'kairostech', viewValue: 'Kairos'},
+    {value: 'solunus', viewValue: 'Solunus'},
+	{value: 'mergenit', viewValue: 'Mergen'},
+    {value: 'orabasesolutions', viewValue: 'Orabase'},
+    {value: 'quantsystemsinc', viewValue: 'Quant'},
+    {value: 'kairostech.com|solunus.com|mergenit.com|orabasesolutions.com|quantsystemsinc', viewValue: 'Others'},
     
   ];
+  selectChangeHandler (event: any) {
+    //update the ui
+    this.selectedCompany = event.target.value;
+	
+  }
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,

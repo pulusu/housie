@@ -5,6 +5,14 @@ import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
 
+export interface country{
+  value: string;
+  viewValue: string;
+}
+export interface state{
+  value: string;
+  viewValue: string;
+}
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
     form: FormGroup;
@@ -12,6 +20,16 @@ export class AddEditComponent implements OnInit {
     isAddMode: boolean;
     loading = false;
     submitted = false;
+	countries: country[] = [
+    {value: 'india', viewValue: 'India'},
+    {value: 'usa', viewValue: 'USA'},
+	
+  ];
+  states: state[] = [
+    {value: 'telangana', viewValue: 'Telangana'},
+    {value: 'ap', viewValue: 'Ap'},
+	
+  ];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -32,10 +50,18 @@ export class AddEditComponent implements OnInit {
         }
 
         this.form = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
-            password: ['', passwordValidators]
+            name: ['', Validators.required],
+            address: ['', Validators.required],
+            displayname: ['', Validators.required],
+            city: ['', Validators.required],
+            email: ['', Validators.required],
+            pincode: ['', Validators.required],
+            mobile: ['', Validators.required],
+            image: ['', Validators.required],
+            gender: ['', Validators.required],
+            country: ['', Validators.required],
+            dob: ['', Validators.required],
+            state: ['', Validators.required],
         });
 
         if (!this.isAddMode) {

@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   user:any;
   orderedcheck=false;
   clicked=false;
+  numberoftickets=0;
   selectedOptiontickets:number;
   constructor(private accountService: AccountService, 
     private toastr: ToastrService,
@@ -51,12 +52,17 @@ export class DashboardComponent implements OnInit {
                 console.log(err);
               });
   }
+  handleChange(index) {
+    this.numberoftickets = index;
+    console.log('index',index)
+  }
   joibGame(event, tourny:any) {
-    this.clicked = true;
+    if(this.numberoftickets>0){
+      this.clicked = true;
     var obj = {};  
     obj['idcustomer']=this.user.id;
     obj['idtournament']=tourny._id;
-    obj['numberoftickets']=2;
+    obj['numberoftickets']=this.numberoftickets;
     obj['amount']=tourny.ticketprice;
     this.accountService.joinTorney(obj)
           .pipe(first())
@@ -79,6 +85,12 @@ export class DashboardComponent implements OnInit {
               }, (err) => {
                 console.log(err);
               });
+    }else{
+      let title ='';
+      let desc = 'Select number of tickets';
+      this.tossterwarning(title,desc)
+    }
+    
 }
 tossterwarning(title,desc){
   this.toastr.warning(desc, title);
