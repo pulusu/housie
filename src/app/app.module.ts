@@ -1,4 +1,4 @@
-﻿import { NgModule } from '@angular/core';
+﻿import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,10 +11,15 @@ import { CountdownModule } from 'ngx-countdown';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatetimepickerModule, MatNativeDatetimeModule } from "@mat-datetimepicker/core";
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
 
+ 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
@@ -24,12 +29,18 @@ import { PlaygameComponent } from './playgame/playgame.component';
 import { GameHistoryComponent } from './game-history/game-history.component';
 import { StartGameComponent } from './start-game/start-game.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';;
-import { TournamentAddComponent } from './tournament-add/tournament-add.component'
-;
+import { TournamentAddComponent } from './tournament-add/tournament-add.component';
 import { TournamentListComponent } from './tournament-list/tournament-list.component' ;
-import { HowToPlayComponent } from './how-to-play/how-to-play.component'
-;
+import { HowToPlayComponent } from './how-to-play/how-to-play.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { TournamentsListAdminComponent } from './tournaments-list-admin/tournaments-list-admin.component';
+import { TournamentsEditAdminComponent } from './tournaments-edit-admin/tournaments-edit-admin.component';
+import { MytournamentsComponent }  from './mytournaments/mytournaments.component';
+import { MyTournamentDetailsComponent } from './my-tournament-details/my-tournament-details.component';
+
+
+import { from } from 'rxjs';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -38,6 +49,13 @@ import { AboutUsComponent } from './about-us/about-us.component';
         HttpClientModule,
         AppRoutingModule,
         CommonModule,
+        MatInputModule,
+        MatDialogModule,
+        MatDatepickerModule,
+        MatNativeDatetimeModule,
+        MatDatetimepickerModule,
+        MatRadioModule,
+        MatButtonModule,
         BrowserAnimationsModule, // required animations module
         ToastrModule.forRoot({
             timeOut: 5000,
@@ -59,28 +77,25 @@ import { AboutUsComponent } from './about-us/about-us.component';
           }),
         
     ],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA],
     declarations: [
         AppComponent,
         AlertComponent,
         HomeComponent,
         DashboardComponent,
-        PlaygameComponent
-,
+        PlaygameComponent,
         GameHistoryComponent ,
         StartGameComponent ,
         AdminUserComponent ,
         TournamentAddComponent ,
-        TournamentListComponent
-,
+        TournamentListComponent,
         HowToPlayComponent ,
-        AboutUsComponent   ],
-    providers: [
- //       { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-   //     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-        // provider used to create fake backend
-       // fakeBackendProvider
-    ],
+        AboutUsComponent ,
+        TournamentsListAdminComponent ,
+        TournamentsEditAdminComponent,
+        MytournamentsComponent,
+        MyTournamentDetailsComponent     ],
+    providers: [ ],
     bootstrap: [AppComponent]
 })
 export class AppModule { };

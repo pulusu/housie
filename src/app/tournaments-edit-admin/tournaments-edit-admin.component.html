@@ -1,0 +1,239 @@
+
+<div class="container-fluid">
+  
+    <div class="row">
+      <div class="col-lg-1"></div>
+           <div class="col-lg-10">
+               <section class="card">
+                   <h2 class="title">
+                      Edit Tournament
+                   </h2>
+                   <div class="card-body">
+                       
+                       <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                           <div class="row">
+                           <div class="col-md-6">
+                           <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input type="text" placeholder="Name *" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.name.errors.required">Name is required</div>
+                                  </div>
+                               </div>
+                           </div>
+                           
+                           
+                           
+                           
+                           
+                           
+                           <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input (keypress)="onlyNumberKey($event)" maxlength="6" type="text" placeholder="Ticket Price *" formControlName="ticketprice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ticketprice.errors }" />
+                                  <div *ngIf="submitted && f.ticketprice.errors" class="invalid-feedback">
+                                        <div *ngIf="f.ticketprice.errors.required">Ticket Price is required</div>
+                                  </div>
+                               </div>
+                           </div>
+                           
+                           <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="Fast five winners *" formControlName="fastfivewinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fastfivewinners.errors }" />
+                                  <div *ngIf="submitted && f.fastfivewinners.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fastfivewinners.errors.required">Fast Five Winners is required</div>
+                                  </div>
+                               </div>
+                           </div>
+                           
+                           <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="Fastfive prize *" formControlName="fastprizevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fastprizevalue.errors }" />
+                                  <div *ngIf="submitted && f.fastprizevalue.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fastprizevalue.errors.required">Fast Five Prize is required</div>
+                                  </div>
+                               </div>
+                           </div>
+                           
+                           <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="4cornerswinners *" formControlName="fourcornerswinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fourcornerswinners.errors }" />
+                                  <div *ngIf="submitted && f.fourcornerswinners.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fourcornerswinners.errors.required">4corners winners is required</div>
+                                  </div>
+                               </div>
+                           </div>
+                           
+                           <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="4corners prize *" formControlName="fourcornersvalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fourcornersvalue.errors }" />
+                                  <div *ngIf="submitted && f.fourcornersvalue.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fourcornersvalue.errors.required">4corners prize is required</div>
+                                  </div>
+                               </div>
+                           </div>
+                           
+                           <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="Firstrow winners *" formControlName="firstrowwinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstrowwinners.errors }" />
+                                  <div *ngIf="submitted && f.firstrowwinners.errors" class="invalid-feedback">
+                                        <div *ngIf="f.firstrowwinners.errors.required">Firstrow winners is required</div>
+                                  </div>
+                               </div>
+                           </div>
+                           
+                                     <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="Firstrow prize" formControlName="firstrowvalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstrowvalue.errors }" />
+                                  <div *ngIf="submitted && f.firstrowvalue.errors" class="invalid-feedback">
+                                        <div *ngIf="f.firstrowvalue.errors.required">Firstrow prize is required</div>
+                                  </div>
+                               </div>
+                     </div>
+                     <div class="form-group ">
+                       <div class="col-sm-12">
+                          <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Secondrow winners *" formControlName="secondrowwinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondrowwinners.errors }" />
+                          <div *ngIf="submitted && f.secondrowwinners.errors" class="invalid-feedback">
+                                <div *ngIf="f.secondrowwinners.errors.required">Second row winners is required</div>
+                          </div>
+                       </div>
+                     </div>
+                           
+           </div>
+                           
+                           
+                           
+                           
+                           <div class="col-md-6">
+                           
+                             
+                             
+                             <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Secondrow Prize *" formControlName="secondrowvalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondrowvalue.errors }" />
+                                  <div *ngIf="submitted && f.secondrowvalue.errors" class="invalid-feedback">
+                                        <div *ngIf="f.secondrowvalue.errors.required">Second row prize is required</div>
+                                  </div>
+                               </div>
+                             </div>
+                             
+                             <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Thirdrow winners" formControlName="thirdrowwinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdrowwinners.errors }" />
+                                  <div *ngIf="submitted && f.thirdrowwinners.errors" class="invalid-feedback">
+                                        <div *ngIf="f.thirdrowwinners.errors.required">Third row winners is required</div>
+                                  </div>
+                               </div>
+                             </div>
+                             
+                             <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Thirdrow prize *" formControlName="thirdrowvalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdrowvalue.errors }" />
+                                  <div *ngIf="submitted && f.thirdrowvalue.errors" class="invalid-feedback">
+                                        <div *ngIf="f.thirdrowvalue.errors.required">Third row prize is required</div>
+                                  </div>
+                               </div>
+                             </div>
+                             
+                             <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Fullhousie winners" formControlName="fullhousewinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullhousewinners.errors }" />
+                                  <div *ngIf="submitted && f.fullhousewinners.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fullhousewinners.errors.required">Full housie winners is required</div>
+                                  </div>
+                               </div>
+                             </div>
+                             
+                             <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Fullhousie prize *" formControlName="fullhousevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullhousevalue.errors }" />
+                                  <div *ngIf="submitted && f.fullhousevalue.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fullhousevalue.errors.required">Full housie prize is required</div>
+                                  </div>
+                               </div>
+                             </div>
+                             
+                             <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <select formControlName="multipletickets" placeholder="Select multiple tickets" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.multipletickets.errors }" >
+                                         <option value="">-- Select multiple tickets allow  --</option>
+                                         <option *ngFor="let ticket of tickets" [value]="ticket.value">{{ticket.viewValue}}</option>
+                                  </select>	
+                                  <div *ngIf="submitted && f.multipletickets.errors" class="invalid-feedback">
+                                     <div *ngIf="f.multipletickets.errors.required">Allow multiple tickets is required</div>
+             
+                                  </div>
+                               </div>
+                             </div>
+                             
+                             <div class="form-group ">
+                               <div class="col-sm-12">
+                                  <input type="text"  (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Total Tickets" formControlName="totaltickets" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.totaltickets.errors }" />
+                                  <div *ngIf="submitted && f.totaltickets.errors" class="invalid-feedback">
+                                        <div *ngIf="f.totaltickets.errors.required">Total Tickets is required</div>
+                                  </div>
+                               </div>
+                             </div>
+                             
+                             <div class="form-group ">
+                               <div class="col-sm-12">
+                                <mat-form-field>
+                                   <mat-placeholder>Registration DateTime</mat-placeholder>
+                                   <input matInput formControlName="registrationenddate" [matDatetimepicker]="dts" required autocomplete="false">
+                                   <mat-datetimepicker-toggle [for]="dts" matSuffix></mat-datetimepicker-toggle>
+                                   <mat-datetimepicker #dts type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+                                </mat-form-field>
+                                            <div *ngIf="submitted && f.registrationenddate.errors" class="invalid-feedback">
+                                        <div *ngIf="f.registrationenddate.errors.required">Registration close date is required</div>
+                                  </div>
+
+                               </div>
+                             </div>
+                             
+                             <div class="form-group ">
+                               <div class="col-sm-12">
+
+
+                                <mat-form-field>
+                                   <mat-placeholder>End DateTime</mat-placeholder>
+                                   <mat-datetimepicker-toggle [for]="dte" matSuffix></mat-datetimepicker-toggle>
+                                   <mat-datetimepicker #dte type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+                                   <input matInput formControlName="startdate" [matDatetimepicker]="dte" required autocomplete="false">
+                                </mat-form-field>
+
+                                  
+                                  <div *ngIf="submitted && f.startdate.errors" class="invalid-feedback">
+                                        <div *ngIf="f.startdate.errors.required">Toruney start date is required</div>
+                                  </div>
+                               </div>
+                             </div>
+                             
+                         
+
+                           </div>
+                           
+                           </div>
+             
+                           
+                           
+                 <div class="form-group">
+         <button [disabled]="loading" class="btn btn-primary">
+             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+             Update Tounament
+         </button>
+         <a routerLink="/tournaments-list" class="btn btn-danger">Cancel</a>
+         
+     </div>
+                   </form>      
+             </div>
+                      
+                  
+               </section>
+                </div>
+                 </div>
+                 
+</div>
+
+
+
+                    
+                 

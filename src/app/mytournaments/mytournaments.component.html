@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Order Id</th>
+            <th>Tourney Name	</th>
+            <th>Tickets</th>
+            <th>Amount</th>
+            <th>Action</th>
+           <!-- <th style="width: 10%"></th>-->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of tournaments">
+            <td>{{user._id}}</td>
+            <td>{{user.tournament[0].name}}</td>
+            <td>{{user.numberoftickets}}</td>
+            <td>{{user.amount}}</td>
+            
+            
+            <td>
+                <a routerLink="/my-tournament-details/{{user.tournament[0]._id}}"  class="btn btn-info" >View Details</a>
+                
+              
+            </td>
+            
+           
+        </tr>
+        <tr *ngIf="!tournaments">
+            <td colspan="6" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

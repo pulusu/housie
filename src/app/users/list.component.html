@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of userslist">
             <td>{{user.name}}</td>
             <td>{{user.displayname}}</td>
             <td>{{user.email}}</td>
@@ -29,7 +29,7 @@
                 </button>-->
             </td>
         </tr>
-        <tr *ngIf="!users">
+        <tr *ngIf="!userslist">
             <td colspan="4" class="text-center">
                 <span class="spinner-border spinner-border-lg align-center"></span>
             </td>
