@@ -11,6 +11,10 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
 import { TournamentAddComponent } from './tournament-add/tournament-add.component';
 import { HowToPlayComponent } from './how-to-play/how-to-play.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { TournamentsListAdminComponent } from './tournaments-list-admin/tournaments-list-admin.component';
+import { TournamentsEditAdminComponent } from './tournaments-edit-admin/tournaments-edit-admin.component';
+import { MytournamentsComponent }  from './mytournaments/mytournaments.component';
+import { MyTournamentDetailsComponent } from './my-tournament-details/my-tournament-details.component';
 
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
@@ -29,7 +33,11 @@ const routes: Routes = [
 	{ path: 'tournament-add', component: TournamentAddComponent, canActivate: [AuthGuard] },
 	{ path: 'how-to-play', component: HowToPlayComponent, canActivate: [AuthGuard] },
 	{ path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard] },
-
+    { path: 'tournaments-list', component: TournamentsListAdminComponent, canActivate: [AuthGuard] },
+    { path: 'my-tournaments', component: MytournamentsComponent, canActivate: [AuthGuard] },
+    { path: 'tournament-edit/:id', component: TournamentsEditAdminComponent, canActivate: [AuthGuard] },
+    { path: 'my-tournament-details/:id', component: MyTournamentDetailsComponent, canActivate: [AuthGuard] },
+  
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

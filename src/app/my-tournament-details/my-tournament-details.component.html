@@ -10,22 +10,16 @@
 </div>
 
 <div class="row">
-<div class="col-md-3" >
+<div class="col-md-1" >
       
 </div>
-<div class="col-md-6">
+<div class="col-md-10">
     <div class="card">
         <div class="card-body">
     <div class="row">
         <div class="col-md-12">
-            <p class="text-center">Start Date : {{tournamentDetails.startdate | date:'medium'}}</p>
-            <div class="time-left m-b-20">
-                <h3>Game Starts in</h3>
-           
-            <div>
-                <countdown [config]="{ leftTime: remaintime, format: 'd:h:m:s' }"></countdown>
-              </div>
-            </div>
+            <p class="text-center">Date : {{startdate | date:'short'}}</p>
+            
               
         </div>  
         <div class="col-md-12">
@@ -35,10 +29,10 @@
 
     <div class="row"  *ngFor="let user of alltikets; let a = index">
        
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="game-ticket">
             <p>Ticket -{{mytickets[a]._id}}</p>
-            <table id="{{mytickets[a]._id}}">
+            <table class="" id="{{mytickets[a]._id}}">
                 <tr *ngFor='let in of [0,1,2]; let m = index'>
                     <td *ngFor='let in of [0,1,2,3,4,5,6,7,8]; let i = index' class="{{ 'object-' + m }}" [ngSwitch]='m'>
                             <div *ngSwitchCase="'0'" class="{{m}}_{{mytickets[a]._id}}"  [ngClass]="{'sel_active': allcolumnres[a][i] == user[i] && allcolumnres[a][i] != 0}"><span *ngIf="user[i] != '0'" >{{user[i]}} </span></div>
@@ -48,7 +42,55 @@
                 </tr>
                 
             </table>
+            </div>
         </div>
+        <div class="col-md-4">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Prize Type</th>
+                    <th>Rank</th>
+                </tr>
+           </thead>
+           <tbody>
+            
+               <tr *ngFor="let won of mytickets[a].prizes.FasrFive">
+                   <td>Fastfive</td>
+                   <td>{{won.rank}}</td>
+               </tr>
+                   
+             
+                 <tr *ngFor="let won of mytickets[a].prizes.FirstRow">
+                     <td>FirstRow</td>
+                     <td>{{won.rank}}</td>
+                 </tr>
+                  
+             <tr *ngFor="let won of mytickets[a].prizes.SecondRow">
+                     <td>SecondRow</td>
+                    <td> {{won.rank}}</td>
+                </tr>
+                  
+              
+                <tr *ngFor="let won of mytickets[a].prizes.ThirdRow">
+                    <td>ThirdRow</td>
+                   <td> {{won.rank}}</td>
+               </tr>
+                
+             
+                <tr *ngFor="let won of mytickets[a].prizes.FourCornrs">
+                    <td>FourCornrs</td>
+                   <td>{{won.rank}}</td>
+               </tr>
+                   
+            
+                <tr *ngFor="let won of mytickets[a].prizes.FullHousie">
+                    <td>FullHousie</td>
+                   <td>{{won.rank}}</td>
+               </tr>
+                
+             
+            </tbody>
+            </table>
         </div>
         <hr>
     </div>

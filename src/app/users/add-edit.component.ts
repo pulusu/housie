@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
+import { environment } from '@environments/environment';
 import { AccountService, AlertService } from '@app/_services';
 
 export interface country{
@@ -20,6 +21,7 @@ export class AddEditComponent implements OnInit {
     isAddMode: boolean;
     loading = false;
     submitted = false;
+    url:any;
 	countries: country[] = [
     {value: 'india', viewValue: 'India'},
     {value: 'usa', viewValue: 'USA'},
@@ -44,30 +46,35 @@ export class AddEditComponent implements OnInit {
         this.isAddMode = !this.id;
         
         // password not required in edit mode
-        const passwordValidators = [Validators.minLength(6)];
-        if (this.isAddMode) {
-            passwordValidators.push(Validators.required);
-        }
+       
 
         this.form = this.formBuilder.group({
             name: ['', Validators.required],
             address: ['', Validators.required],
             displayname: ['', Validators.required],
-            city: ['', Validators.required],
+            city: [''],
             email: ['', Validators.required],
-            pincode: ['', Validators.required],
+            pincode: [''],
             mobile: ['', Validators.required],
-            image: ['', Validators.required],
-            gender: ['', Validators.required],
-            country: ['', Validators.required],
-            dob: ['', Validators.required],
-            state: ['', Validators.required],
+            gender: [''],
+            country: [''],
+            dob: [''],
+            state: [''],
+            password: [''],
+            profileimage:['']
+
         });
 
         if (!this.isAddMode) {
             this.accountService.getById(this.id)
                 .pipe(first())
-                .subscribe(x => this.form.patchValue(x));
+                .subscribe((x:any) => {
+                    console.log('dob',x)
+                    this.form.patchValue(x);
+                    this.form.get('dob').setValue(new Date(x.dob))
+                    this.url = `${environment.apiUrl}/`+x.profileimage
+                    console.log('dob',x)
+                });
         }
     }
 
@@ -82,6 +89,7 @@ export class AddEditComponent implements OnInit {
 
         // stop here if form is invalid
         if (this.form.invalid) {
+            console.log('sss',this.form)
             return;
         }
 
@@ -94,32 +102,52 @@ export class AddEditComponent implements OnInit {
     }
 
     private createUser() {
-        this.accountService.register(this.form.value)
+        this.accountService.CreateUser(this.form.value)
             .pipe(first())
-            .subscribe({
-                next: () => {
-                    this.alertService.success('User added successfully', { keepAfterRouteChange: true });
-                    this.router.navigate(['../'], { relativeTo: this.route });
-                },
-                error: error => {
-                    this.alertService.error(error);
+            .subscribe((response:any) =>{
+                console.log('response', response)
+                if(response.error==false){
+                        this.router.navigate(['/users']);
+                  }else{
+                    console.log(response);
                     this.loading = false;
-                }
-            });
+                          
+                  }
+                });
     }
 
     private updateUser() {
+        this.form.value.id=this.id;
+        console.log('value', this.form.value)
+           
         this.accountService.update(this.id, this.form.value)
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    this.alertService.success('Update successful', { keepAfterRouteChange: true });
-                    this.router.navigate(['../../'], { relativeTo: this.route });
-                },
-                error: error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
+        .pipe(first())
+        .subscribe((response:any) =>{
+            if(response.error==false){
+                    this.router.navigate(['/users']);
+              }else{
+                console.log(response);
+                this.loading = false;
+                      
+              }
             });
     }
+    readUrl(event:any) {
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+           
+            this.form.patchValue({
+                profileimage: file
+              });
+              // this.form.get('profileimage').setValue(file);
+              this.form.get('profileimage').updateValueAndValidity()
+      
+          var reader = new FileReader();
+          reader.onload = (event: ProgressEvent) => {
+            this.url = (<FileReader>event.target).result;
+          }
+      
+          reader.readAsDataURL(event.target.files[0]);
+        }
+      }
 }

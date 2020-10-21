@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 a { cursor: pointer }
 
 .app-container {
@@ -230,4 +232,22 @@ text-align: left;
 .logo {
     border: 1px solid #dfc180;
     padding: 2px;
+}
+.smallRadio .mat-radio-container{
+    height: 10px;
+    width: 10px;
+}
+.smallRadio .mat-radio-outer-circle{
+    height: 10px;
+    width: 10px;
+}
+.smallRadio .mat-radio-inner-circle{
+    height: 10px;
+    width: 10px;
+}
+.smallRadio .mat-radio-button .mat-radio-ripple{
+    height: 20px; 
+    width: 20px; 
+    left: calc(50% - 10px); 
+    top: calc(50% - 10px); 
 }

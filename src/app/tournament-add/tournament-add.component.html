@@ -1,20 +1,20 @@
 
-
-
+<div class="container-fluid">
+  
            <div class="row">
-                  <div class="col-lg-12">
-                      <section class="panel">
-                          <header class="panel-heading">
+             <div class="col-lg-1"></div>
+                  <div class="col-lg-10">
+                      <section class="card">
+                          <h2 class="title">
                              Add Tournament
-                          </header>
-                          <div class="panel-body">
+                          </h2>
+                          <div class="card-body">
                               
 							  <form [formGroup]="form" (ngSubmit)="onSubmit()">
                                   <div class="row">
 								  <div class="col-md-6">
 								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Name <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
+                                      <div class="col-sm-12">
                                          <input type="text" placeholder="Name *" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
                                          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                                                <div *ngIf="f.name.errors.required">Name is required</div>
@@ -22,44 +22,14 @@
                                       </div>
                                   </div>
 								  
-								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Num' of seconds <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" formControlName="seconds" class="form-control" value="2700"  readonly=""/>
-                                         <!--<div *ngIf="submitted && f.seconds.errors" class="invalid-feedback">
-                                               <div *ngIf="f.seconds.errors.required">Num' of seconds is required</div>
-                                         </div-->
-                                      </div>
-                                  </div>
+								  
+								  
+								  
+								  
 								  
 								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Prize type <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <select formControlName="prize" placeholder="Select Prize" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.prize.errors }" >
-				                                <option value="">-- Select Prize Type --</option>
-                                                <option *ngFor="let prize of prizes" [value]="prize.value">{{prize.viewValue}}</option>
-                                         </select>	
-                                         <div *ngIf="submitted && f.prize.errors" class="invalid-feedback">
-                                            <div *ngIf="f.prize.errors.required">Prize Type is required</div>
-                    
-                                         </div>
-                                      </div>
-                                  </div>
-								  
-								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Amount <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Tournament amount" formControlName="amount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
-                                         <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
-                                               <div *ngIf="f.amount.errors.required">Amount is required</div>
-                                         </div>
-                                      </div>
-                                  </div>
-								  
-								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Ticket price <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Tournament amount" formControlName="ticketprice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ticketprice.errors }" />
+                                      <div class="col-sm-12">
+                                         <input (keypress)="onlyNumberKey($event)" maxlength="6" type="text" placeholder="Ticket Price *" formControlName="ticketprice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ticketprice.errors }" />
                                          <div *ngIf="submitted && f.ticketprice.errors" class="invalid-feedback">
                                                <div *ngIf="f.ticketprice.errors.required">Ticket Price is required</div>
                                          </div>
@@ -67,9 +37,8 @@
                                   </div>
 								  
 								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Fast five winners <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Tournament amount" formControlName="fastfivewinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fastfivewinners.errors }" />
+                                      <div class="col-sm-12">
+                                         <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="Fast five winners *" formControlName="fastfivewinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fastfivewinners.errors }" />
                                          <div *ngIf="submitted && f.fastfivewinners.errors" class="invalid-feedback">
                                                <div *ngIf="f.fastfivewinners.errors.required">Fast Five Winners is required</div>
                                          </div>
@@ -77,19 +46,17 @@
                                   </div>
 								  
 								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Fast five prize value <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Fastfive prize" formControlName="fastfiveprizevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fastfiveprizevalue.errors }" />
-                                         <div *ngIf="submitted && f.fastfiveprizevalue.errors" class="invalid-feedback">
-                                               <div *ngIf="f.fastfiveprizevalue.errors.required">Fast Five Prize is required</div>
+                                      <div class="col-sm-12">
+                                         <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="Fastfive prize *" formControlName="fastprizevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fastprizevalue.errors }" />
+                                         <div *ngIf="submitted && f.fastprizevalue.errors" class="invalid-feedback">
+                                               <div *ngIf="f.fastprizevalue.errors.required">Fast Five Prize is required</div>
                                          </div>
                                       </div>
                                   </div>
 								  
 								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> 4 corners winners <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="4cornerswinners" formControlName="fourcornerswinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fourcornerswinners.errors }" />
+                                      <div class="col-sm-12">
+                                         <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="4cornerswinners *" formControlName="fourcornerswinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fourcornerswinners.errors }" />
                                          <div *ngIf="submitted && f.fourcornerswinners.errors" class="invalid-feedback">
                                                <div *ngIf="f.fourcornerswinners.errors.required">4corners winners is required</div>
                                          </div>
@@ -97,66 +64,61 @@
                                   </div>
 								  
 								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> 4 corners prize value <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="4corners prize" formControlName="fourcornersprizevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fourcornersprizevalue.errors }" />
-                                         <div *ngIf="submitted && f.fourcornersprizevalue.errors" class="invalid-feedback">
-                                               <div *ngIf="f.fourcornersprizevalue.errors.required">4corners prize is required</div>
+                                      <div class="col-sm-12">
+                                         <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="4corners prize *" formControlName="fourcornersvalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fourcornersvalue.errors }" />
+                                         <div *ngIf="submitted && f.fourcornersvalue.errors" class="invalid-feedback">
+                                               <div *ngIf="f.fourcornersvalue.errors.required">4corners prize is required</div>
                                          </div>
                                       </div>
                                   </div>
 								  
 								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> First row winners <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Firstrow winners" formControlName="firstrowwinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstrowwinners.errors }" />
+                                      <div class="col-sm-12">
+                                         <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="Firstrow winners *" formControlName="firstrowwinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstrowwinners.errors }" />
                                          <div *ngIf="submitted && f.firstrowwinners.errors" class="invalid-feedback">
                                                <div *ngIf="f.firstrowwinners.errors.required">Firstrow winners is required</div>
                                          </div>
                                       </div>
                                   </div>
 								  
-								  <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> First row prize value <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Firstrow prize" formControlName="firstrowprizevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstrowprizevalue.errors }" />
-                                         <div *ngIf="submitted && f.firstrowprizevalue.errors" class="invalid-feedback">
-                                               <div *ngIf="f.firstrowprizevalue.errors.required">Firstrow prize is required</div>
+								            <div class="form-group ">
+                                      <div class="col-sm-12">
+                                         <input (keypress)="onlyNumberKey($event)" maxlength="4" type="text" placeholder="Firstrow prize" formControlName="firstrowvalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstrowvalue.errors }" />
+                                         <div *ngIf="submitted && f.firstrowvalue.errors" class="invalid-feedback">
+                                               <div *ngIf="f.firstrowvalue.errors.required">Firstrow prize is required</div>
                                          </div>
                                       </div>
-                                  </div>
+                            </div>
+                            <div class="form-group ">
+                              <div class="col-sm-12">
+                                 <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Secondrow winners *" formControlName="secondrowwinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondrowwinners.errors }" />
+                                 <div *ngIf="submitted && f.secondrowwinners.errors" class="invalid-feedback">
+                                       <div *ngIf="f.secondrowwinners.errors.required">Second row winners is required</div>
+                                 </div>
+                              </div>
+                            </div>
 								  
-                   		          </div>
+                  </div>
 								  
 								  
 								  
 								  
 								  <div class="col-md-6">
 								  
-                                    <div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Second row winners <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Secondrow winners" formControlName="secondrowwinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondrowwinners.errors }" />
-                                         <div *ngIf="submitted && f.secondrowwinners.errors" class="invalid-feedback">
-                                               <div *ngIf="f.secondrowwinners.errors.required">Second row winners is required</div>
+                                    
+									
+									<div class="form-group ">
+                                      <div class="col-sm-12">
+                                         <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Secondrow Prize *" formControlName="secondrowvalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondrowvalue.errors }" />
+                                         <div *ngIf="submitted && f.secondrowvalue.errors" class="invalid-feedback">
+                                               <div *ngIf="f.secondrowvalue.errors.required">Second row prize is required</div>
                                          </div>
                                       </div>
                                     </div>
 									
 									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Second row prize value <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Secondrow" formControlName="secondrowprizevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondrowprizevalue.errors }" />
-                                         <div *ngIf="submitted && f.secondrowprizevalue.errors" class="invalid-feedback">
-                                               <div *ngIf="f.secondrowprizevalue.errors.required">Second row prize is required</div>
-                                         </div>
-                                      </div>
-                                    </div>
-									
-									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Third row winners <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Thirdrow winners" formControlName="thirdrowwinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdrowwinners.errors }" />
+                                      <div class="col-sm-12">
+                                         <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Thirdrow winners" formControlName="thirdrowwinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdrowwinners.errors }" />
                                          <div *ngIf="submitted && f.thirdrowwinners.errors" class="invalid-feedback">
                                                <div *ngIf="f.thirdrowwinners.errors.required">Third row winners is required</div>
                                          </div>
@@ -164,19 +126,17 @@
                                     </div>
 									
 									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Third row prize value <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Thirdrow prize" formControlName="thirdrowprizevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdrowprizevalue.errors }" />
-                                         <div *ngIf="submitted && f.thirdrowprizevalue.errors" class="invalid-feedback">
-                                               <div *ngIf="f.thirdrowprizevalue.errors.required">Third row prize is required</div>
+                                      <div class="col-sm-12">
+                                         <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Thirdrow prize *" formControlName="thirdrowvalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdrowvalue.errors }" />
+                                         <div *ngIf="submitted && f.thirdrowvalue.errors" class="invalid-feedback">
+                                               <div *ngIf="f.thirdrowvalue.errors.required">Third row prize is required</div>
                                          </div>
                                       </div>
                                     </div>
 									
 									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Full house winners <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Fullhousie winners" formControlName="fullhousewinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullhousewinners.errors }" />
+                                      <div class="col-sm-12">
+                                         <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Fullhousie winners" formControlName="fullhousewinners" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullhousewinners.errors }" />
                                          <div *ngIf="submitted && f.fullhousewinners.errors" class="invalid-feedback">
                                                <div *ngIf="f.fullhousewinners.errors.required">Full housie winners is required</div>
                                          </div>
@@ -184,18 +144,16 @@
                                     </div>
 									
 									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Full house prize value <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Fullhousie prize" formControlName="fullhouseprizevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullhouseprizevalue.errors }" />
-                                         <div *ngIf="submitted && f.fullhouseprizevalue.errors" class="invalid-feedback">
-                                               <div *ngIf="f.fullhouseprizevalue.errors.required">Full housie prize is required</div>
+                                      <div class="col-sm-12">
+                                         <input type="text" (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Fullhousie prize *" formControlName="fullhousevalue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullhousevalue.errors }" />
+                                         <div *ngIf="submitted && f.fullhousevalue.errors" class="invalid-feedback">
+                                               <div *ngIf="f.fullhousevalue.errors.required">Full housie prize is required</div>
                                          </div>
                                       </div>
                                     </div>
 									
 									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Allow multiple tickets <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
+                                      <div class="col-sm-12">
                                          <select formControlName="multipletickets" placeholder="Select multiple tickets" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.multipletickets.errors }" >
 				                                <option value="">-- Select multiple tickets allow  --</option>
                                                 <option *ngFor="let ticket of tickets" [value]="ticket.value">{{ticket.viewValue}}</option>
@@ -208,9 +166,8 @@
                                     </div>
 									
 									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Total tickets <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Total Tickets" formControlName="totaltickets" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.totaltickets.errors }" />
+                                      <div class="col-sm-12">
+                                         <input type="text"  (keypress)="onlyNumberKey($event)" maxlength="4" placeholder="Total Tickets" formControlName="totaltickets" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.totaltickets.errors }" />
                                          <div *ngIf="submitted && f.totaltickets.errors" class="invalid-feedback">
                                                <div *ngIf="f.totaltickets.errors.required">Total Tickets is required</div>
                                          </div>
@@ -218,337 +175,44 @@
                                     </div>
 									
 									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Registration close date <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Select registration close date" formControlName="regclosedate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.regclosedate.errors }" id='datetimepicker1'/>
-										 <!--<dl-date-time-picker formControlName="regclosedate" class="form-control" [(maxView)]="maxView"
-        [(minView)]="minView"
-        [(startView)]="startView"
-        [(minuteStep)]="minuteStep"
-        [(ngModel)]="selectedDate" (change)="onCustomDateChange($event)">
-</dl-date-time-picker>-->
-                                         <div *ngIf="submitted && f.regclosedate.errors" class="invalid-feedback">
-                                               <div *ngIf="f.regclosedate.errors.required">Registration close date is required</div>
+                                      <div class="col-sm-12">
+                                       <mat-form-field>
+                                          <mat-placeholder>Registration DateTime</mat-placeholder>
+                                          <input matInput formControlName="registrationenddate" [matDatetimepicker]="dts" required autocomplete="false">
+                                          <mat-datetimepicker-toggle [for]="dts" matSuffix></mat-datetimepicker-toggle>
+                                          <mat-datetimepicker #dts type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+                                       </mat-form-field>
+										           <div *ngIf="submitted && f.registrationenddate.errors" class="invalid-feedback">
+                                               <div *ngIf="f.registrationenddate.errors.required">Registration close date is required</div>
                                          </div>
+
                                       </div>
                                     </div>
 									
 									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Toruney start date <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <input type="text" placeholder="Select start date" formControlName="startdate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.startdate.errors }" />
+                                      <div class="col-sm-12">
+
+
+                                       <mat-form-field>
+                                          <mat-placeholder>End DateTime</mat-placeholder>
+                                          <mat-datetimepicker-toggle [for]="dte" matSuffix></mat-datetimepicker-toggle>
+                                          <mat-datetimepicker #dte type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+                                          <input matInput formControlName="startdate" [matDatetimepicker]="dte" required autocomplete="false">
+                                       </mat-form-field>
+
+                                         
                                          <div *ngIf="submitted && f.startdate.errors" class="invalid-feedback">
                                                <div *ngIf="f.startdate.errors.required">Toruney start date is required</div>
                                          </div>
                                       </div>
                                     </div>
 									
-									<div class="form-group ">
-                                      <label class="col-sm-4 control-label" ><strong> Tournament type <span class="requiredlabel">*</span></strong></label>
-                                      <div class="col-sm-8">
-                                         <select formControlName="tournamenttype" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tournamenttype.errors }" >
-				                                <option value="">-- Select tournament type --</option>
-                                                <option *ngFor="let tournament of tournaments" [value]="tournament.value">{{tournament.viewValue}}</option>
-                                         </select>	
-                                         <div *ngIf="submitted && f.tournamenttype.errors" class="invalid-feedback">
-                                            <div *ngIf="f.tournamenttype.errors.required">Tournament type is required</div>
-                    
-                                         </div>
-                                      </div>
-                                    </div>
+								
 
 								  </div>
 								  
 								  </div>
-								  
-								<!-- ADD MORE FOR FASTFIVE PRIZE WINNERS CODE START -->          
-                                   <div class="form-group">     
-                                        <label class="col-sm-2 control-label"><strong> Fast five ranks <span class="requiredlabel">*</span></strong></label> 
-                                     
-                        <div id="mainblock_fastfive" class="col-md-8 well well-my">
-                                <div class="row" id="cloned_div_fastfive">   
-                                           
-                                            <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="fastfivewinnersfrom[]" name="fastfivewinnersfrom" placeholder=" Rank From " value="" [ngClass]="{ 'is-invalid': submitted && f.fastfivewinnersfrom.errors }" />
-                                              <div *ngIf="submitted && f.fastfivewinnersfrom.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fastfivewinnersfrom.errors.required">Rank from is required</div>
-                                              </div>  
-                                           </div>
-                                           <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="fastfivewinnersto[]" name="fastfivewinnersto" placeholder=" Rank To " value="" [ngClass]="{ 'is-invalid': submitted && f.fastfivewinnersto.errors }" />
-											  <div *ngIf="submitted && f.fastfivewinnersto.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fastfivewinnersto.errors.required">Rank to is required</div>
-                                              </div>
-                                              
-                                            </div>
-                                             <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="fastfivewinnersamount[]" name="fastfivewinnersamount" placeholder=" Rank Amount " value="" [ngClass]="{ 'is-invalid': submitted && f.fastfivewinnersamount.errors }" />
-											  <div *ngIf="submitted && f.fastfivewinnersamount.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fastfivewinnersamount.errors.required">Rank amount is required</div>
-                                              </div>
-                                              
-                                            </div>
-                                            
-                                            <div class="col-sm-3 text-center">
-                                              <button  type="button" class="btn cmn-btn btn-danger delete_fastfive" id="rem" style="display:none;padding: 5px 8px;" ><i class="fa fa-times" aria-hidden="true"></i></button>
-                                            </div>
-                                            
-                                        <hr />
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                        <button id="add_more_fastfive" class="btn btn-primary  btn-sm" type="button" style="position: absolute;top: 19px;left: -63px;">ADD</button>
-                                      </div>
-                                </div>
-                                  
-                       <!--  ADD MORE FOR FASTFIVE PRIZE WINNERS CODE END -->   
-
-
-
-                       <!-- ADD MORE FOR FOUR CORNERS PRIZE WINNERS CODE START -->          
-                                   
-                                   <div class="form-group">     
-                                        <label class="col-sm-2 control-label"><strong> 4 corners ranks <span class="requiredlabel">*</span></strong></label> 
-                                     
-                        <div id="mainblock_fourcorners" class="col-md-8 well well-my">
-                                <div class="row" id="cloned_div_fourcorners">   
-                                           
-                                            <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="fourcornerswinnersfrom[]" name="fourcornerswinnersfrom" placeholder=" Rank From " value="" [ngClass]="{ 'is-invalid': submitted && f.fourcornerswinnersfrom.errors }" />
-											  <div *ngIf="submitted && f.fourcornerswinnersfrom.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fourcornerswinnersfrom.errors.required">Rank from is required</div>
-                                              </div>
-                                               
-                                           </div>
-                                           <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="fourcornerswinnersto[]" name="fourcornerswinnersto" placeholder=" Rank To " value="" [ngClass]="{ 'is-invalid': submitted && f.fourcornerswinnersfrom.errors }" />
-											  <div *ngIf="submitted && f.fourcornerswinnersto.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fourcornerswinnersto.errors.required">Rank to is required</div>
-                                              </div>
-                                              
-                                            </div>
-                                             <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="fourcornerswinnersamount[]" name="fourcornerswinnersamount" placeholder=" Rank Amount " value="" [ngClass]="{ 'is-invalid': submitted && f.fourcornerswinnersamount.errors }" >
-											 <div *ngIf="submitted && f.fourcornerswinnersamount.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fourcornerswinnersamount.errors.required">Rank amount is required</div>
-                                              </div>
-                                              
-                                            </div>
-                                            
-                                            <div class="col-sm-3  text-center">
-                                              <button  type="button" class="btn cmn-btn btn-danger delete_fourcorners" id="rem" style="display:none;padding: 5px 8px;" ><i class="fa fa-times" aria-hidden="true"></i></button>
-                                            </div>
-                                            
-                                        <hr />
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                        <button id="add_more_fourcorners" class="btn btn-primary  btn-sm" type="button" style="position: absolute;top: 19px;left: -63px;">ADD</button>
-                                      </div>
-                                </div>
-                                  
-                                  
-                      <!--  ADD MORE FOR FOUR CORNERS PRIZE WINNERS CODE END -->
-
-
-
-                        <!-- ADD MORE FOR FIRST ROW PRIZE WINNERS CODE START -->          
-                                   
-                                   <div class="form-group">     
-                                        <label class="col-sm-2 control-label"><strong> First row ranks <span class="requiredlabel">*</span></strong></label> 
-                                     
-                        <div id="mainblock_firstrow" class="col-md-8 well well-my">
-                                <div class="row" id="cloned_div_firstrow">   
-                                           
-                                            <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="firstrowwinnersfrom[]" name="firstrowwinnersfrom" placeholder=" Rank From " value="" [ngClass]="{ 'is-invalid': submitted && f.firstrowwinnersfrom.errors }" />
-											  <div *ngIf="submitted && f.firstrowwinnersfrom.errors" class="invalid-feedback">
-                                                <div *ngIf="f.firstrowwinnersfrom.errors.required">Rank from is required</div>
-                                              </div>
-                                                
-                                           </div>
-                                           <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="firstrowwinnersto[]" name="firstrowwinnersto" placeholder=" Rank To " value="" [ngClass]="{ 'is-invalid': submitted && f.firstrowwinnersto.errors }" />
-											  <div *ngIf="submitted && f.firstrowwinnersto.errors" class="invalid-feedback">
-                                                <div *ngIf="f.firstrowwinnersto.errors.required">Rank to is required</div>
-                                              </div>
-                                              
-                                            </div>
-                                             <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="firstrowwinnersamount[]" name="firstrowwinnersamount" placeholder=" Rank Amount " value="" [ngClass]="{ 'is-invalid': submitted && f.firstrowwinnersamount.errors }" />
-                                              <div *ngIf="submitted && f.firstrowwinnersamount.errors" class="invalid-feedback">
-                                                <div *ngIf="f.firstrowwinnersamount.errors.required">Rank amount is required</div>
-                                              </div>
-                                            </div>
-                                            
-                                            <div class="col-sm-3  text-center">
-                                              <button  type="button" class="btn cmn-btn btn-danger delete_firstrow" id="rem" style="display:none;padding: 5px 8px;"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                            </div>
-                                           
-                                        <hr />
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                        <button id="add_more_firstrow" class="btn btn-primary  btn-sm" type="button" style="position: absolute;top: 19px;left: -63px;">ADD</button>
-                                      </div>
-                                </div>
-                                  
-                                  
-                      <!--  ADD MORE FOR FIRST ROW PRIZE WINNERS CODE END --> 
-
-
-
-                      <!-- ADD MORE FOR SECOND ROW PRIZE WINNERS CODE START -->          
-                                   
-                                   <div class="form-group">     
-                                        <label class="col-sm-2 control-label"><strong> Second row ranks <span class="requiredlabel">*</span></strong></label> 
-                                     
-                        <div id="mainblock_secondrow" class="col-md-8 well well-my">
-                                <div class="row" id="cloned_div_secondrow">   
-                                           
-                                            <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="secondrowwinnersfrom[]" name="secondrowwinnersfrom" placeholder=" Rank From " value="" [ngClass]="{ 'is-invalid': submitted && f.secondrowwinnersfrom.errors }" />
-                                               <div *ngIf="submitted && f.secondrowwinnersfrom.errors" class="invalid-feedback">
-                                                <div *ngIf="f.secondrowwinnersfrom.errors.required">Rank amount is required</div>
-                                              </div> 
-                                           </div>
-                                           <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="secondrowwinnersto[]" name="secondrowwinnersto" placeholder=" Rank To " value="" [ngClass]="{ 'is-invalid': submitted && f.secondrowwinnersto.errors }" />
-                                              <div *ngIf="submitted && f.secondrowwinnersto.errors" class="invalid-feedback">
-                                                <div *ngIf="f.secondrowwinnersto.errors.required">Rank amount is required</div>
-                                              </div>
-                                            </div>
-                                             <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="secondrowwinnersamount[]" name="secondrowwinnersamount" placeholder=" Rank Amount " value="" [ngClass]="{ 'is-invalid': submitted && f.secondrowwinnersamount.errors }" />
-                                              <div *ngIf="submitted && f.secondrowwinnersamount.errors" class="invalid-feedback">
-                                                <div *ngIf="f.secondrowwinnersamount.errors.required">Rank amount is required</div>
-                                              </div>
-                                            </div>
-                                            
-                                            <div class="col-sm-3  text-center">
-                                              <button  type="button" class="btn cmn-btn btn-danger delete_secondrow" id="rem" style="display:none;padding: 5px 8px;" ><i class="fa fa-times" aria-hidden="true"></i></button>
-                                            </div>
-                                            
-                                        <hr />
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                        <button id="add_more_secondrow" class="btn btn-primary  btn-sm" type="button" style="position: absolute;top: 19px;left: -63px;">ADD</button>
-                                      </div>
-                                </div>
-                                  
-                                  
-                      <!--  ADD MORE FOR SECOND ROW PRIZE WINNERS CODE END -->  
-                      
-					  
-
-					  
-					  <!-- ADD MORE FOR THIRD ROW PRIZE WINNERS CODE START -->          
-                                   
-                                   <div class="form-group">     
-                                        <label class="col-sm-2 control-label"><strong> Third row ranks <span class="requiredlabel">*</span></strong></label> 
-                                     
-                        <div id="mainblock_thirdrow" class="col-md-8 well well-my">
-                                <div class="row" id="cloned_div_thirdrow">   
-                                           
-                                            <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="thirdrowwinnersfrom[]" name="thirdrowwinnersfrom" placeholder=" Rank From " value="" [ngClass]="{ 'is-invalid': submitted && f.thirdrowwinnersfrom.errors }" />
-                                              <div *ngIf="submitted && f.thirdrowwinnersfrom.errors" class="invalid-feedback">
-                                                <div *ngIf="f.thirdrowwinnersfrom.errors.required">Rank amount is required</div>
-                                              </div>  
-                                           </div>
-                                           <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="thirdrowwinnersto[]" name="thirdrowwinnersto" placeholder=" Rank To " value="" [ngClass]="{ 'is-invalid': submitted && f.thirdrowwinnersto.errors }" />
-                                              <div *ngIf="submitted && f.thirdrowwinnersto.errors" class="invalid-feedback">
-                                                <div *ngIf="f.thirdrowwinnersto.errors.required">Rank amount is required</div>
-                                              </div>
-                                            </div>
-                                             <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="thirdrowwinnersamount[]" name="thirdrowwinnersamount" placeholder=" Rank Amount " value="" [ngClass]="{ 'is-invalid': submitted && f.thirdrowwinnersamount.errors }" />
-                                              <div *ngIf="submitted && f.thirdrowwinnersamount.errors" class="invalid-feedback">
-                                                <div *ngIf="f.thirdrowwinnersamount.errors.required">Rank amount is required</div>
-                                              </div>
-                                            </div>
-                                            
-                                            <div class="col-sm-3  text-center">
-                                              <button  type="button" class="btn cmn-btn btn-danger delete_thirdrow" id="rem" style="display:none;padding: 5px 8px;" ><i class="fa fa-times" aria-hidden="true"></i></button>
-                                            </div>
-                                            
-                                        <hr />
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                        <button id="add_more_thirdrow" class="btn btn-primary  btn-sm" type="button" style="position: absolute;top: 19px;left: -63px;">ADD</button>
-                                      </div>
-                                </div>
-                                  
-                                  
-                      <!--  ADD MORE FOR THIRD ROW PRIZE WINNERS CODE END --> 
-
-
-
-                      <!-- ADD MORE FOR FULL HOUSE PRIZE WINNERS CODE START -->          
-                                   
-                                   <div class="form-group">     
-                                        <label class="col-sm-2 control-label"><strong> Full house ranks <span class="requiredlabel">*</span></strong></label> 
-                                     
-                        <div id="mainblock_fullhouse" class="col-md-8 well well-my">
-                                <div class="row" id="cloned_div_fullhouse">   
-                                           
-                                            <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="fullhousewinnersfrom[]" name="fullhousewinnersfrom" placeholder=" Rank From " value="" onkeypress="return isNumberKey(event)" [ngClass]="{ 'is-invalid': submitted && f.fullhousewinnersfrom.errors }" />
-                                              <div *ngIf="submitted && f.fullhousewinnersfrom.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fullhousewinnersfrom.errors.required">Rank amount is required</div>
-                                              </div>  
-                                           </div>
-                                           <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="fullhousewinnersto[]" name="fullhousewinnersto" placeholder=" Rank To " value="" onkeypress="return isNumberKey(event)" [ngClass]="{ 'is-invalid': submitted && f.fullhousewinnersto.errors }" />
-                                              <div *ngIf="submitted && f.fullhousewinnersto.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fullhousewinnersto.errors.required">Rank amount is required</div>
-                                              </div>
-                                            </div>
-                                  <div class="col-sm-3">
-                                              <input type="text"  class="form-control"  id="fullhousewinnersamount[]" name="fullhousewinnersamount" placeholder=" Rank Amount " value="" [ngClass]="{ 'is-invalid': submitted && f.fullhousewinnersamount.errors }" />
-                                              <div *ngIf="submitted && f.fullhousewinnersamount.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fullhousewinnersamount.errors.required">Rank amount is required</div>
-                                              </div>
-                                            </div>
-                                            
-                                            <div class="col-sm-3  text-center">
-                                              <button  type="button" class="btn cmn-btn btn-danger delete_fullhouse" id="rem" style="display:none;padding: 5px 8px;" ><i class="fa fa-times" aria-hidden="true"></i></button>
-                                            </div>
-                                            
-                                        <hr />
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                        <button id="add_more_fullhouse" class="btn btn-primary  btn-sm" style="position: absolute;top: 19px;left: -63px;">ADD</button>
-                                      </div>
-                                </div>
-                                  
-                                  
-                      <!--  ADD MORE FOR FULL HOUSE PRIZE WINNERS CODE END -->   					  
-								  
-								  
-						<div class="form-group">                                       
-                                  <label class="col-sm-2 control-label"><strong> Donation </strong></label> 
-                                  <div class="col-sm-2">
-                                     <label class="control-label " ><input type="checkbox"  class="check-box"  id="donationchk" name="donationchk" placeholder="Donation" value="1"></label> 
-                                 </div>
-                                   <div class="col-sm-5" id="donationdesc"  style="display:none">
-                                     <input type="text"  class="form-control"   name="donationdesc" placeholder="Donation Description " value="">
-                                 </div>
-                            </div>  
-                                  
-                                 <div class="form-group">                                       
-                                       <label class="col-sm-2 control-label"><strong> Confirm  </strong></label> 
-                                       <div class="col-sm-2">
-                                         <input type="checkbox"  class="check-box"  id="confirmchk" name="confirmchk" placeholder="SMS Notify" value="1">
-                                      </div>
-                                        <div class="col-sm-5" id="confirmdesc" style="display:none" >
-                                            <input type="text"  class="form-control"   id="confirmdesc" name="confirmdesc" placeholder="Confirmation Description " value="">
-                                        </div>
-                                </div>		  
+					
 								  
 								  
 						<div class="form-group">
@@ -565,6 +229,9 @@
                       </section>
                        </div>
                         </div>
+                        
+</div>
+
 
 
 						   

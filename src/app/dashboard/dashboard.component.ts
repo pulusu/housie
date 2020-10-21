@@ -33,18 +33,16 @@ export class DashboardComponent implements OnInit {
       this.accountService.tournamentsAllbyCustomer(obj)
           .pipe(first())
           .subscribe((datasubmit:any)=>{
-            console.log(datasubmit.tournaments[0].orders.length)
-              for(let i=0; i<datasubmit.tournaments.length; i++){
+             for(let i=0; i<datasubmit.tournaments.length; i++){
                 if(datasubmit.tournaments[i].orders.length>0){
                   datasubmit.tournaments[i]['orders']=true;
                 }else{
                   datasubmit.tournaments[i]['orders']=false;
                 }
+               
               }
               this.users = datasubmit.tournaments
-              console.log('datasubmit',datasubmit.tournaments)
-
-              let title ='';
+                          let title ='';
               let desc = 'Welcome To Kairos Houise';
            //   this.tosstersuccess(title,desc)
 

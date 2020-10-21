@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
+import { ThemePalette } from '@angular/material/core';
 //import {DlDateTimePickerChange} from '../lib';
 
 import { AccountService, AlertService } from '@app/_services';
@@ -28,136 +30,108 @@ export class TournamentAddComponent implements OnInit {
 form: FormGroup;
 loading = false;
 submitted = false;
-maxView = 'year';
-  minView = 'minute';
-  minuteStep = 5;
-  selectedDate: Date;
-  showCalendar = true;
-  startView = 'day';
-  views = ['minute', 'hour', 'day', 'month', 'year'];
-  calendar:any;
-  
-prizes: prize[] = [
-    {value: '1', viewValue: 'Percentage ( % )'},
-    {value: '2', viewValue: 'Amount ( рд░ )'},
-	{value: '3', viewValue: 'Products'},
-    
-    
-  ];
+
   tickets: ticket[] = [
-    {value: 'yes', viewValue: 'YES'},
-    {value: 'no', viewValue: 'NO'},
+    {value: '1', viewValue: 'Yes'},
+    {value: '0', viewValue: 'No'},
 	
   ];
-  
-  tournaments: tournament[] = [
-    {value: '1', viewValue: 'Special Tournament'},
-    
-	
-  ];
-  //onCustomDateChange(event: DlDateTimePickerChange<Date>) {
-   // console.log(event.value);
-  //}
-  //calendar() {
-   // $(function() {
-   //   $('#datetimepicker1').datetimepicker();
- // });
- // }
   
   constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
+        private toastr: ToastrService,
         private accountService: AccountService,
         private alertService: AlertService
   ) { }
 
   ngOnInit() {
+
+   
+
 	  this.form = this.formBuilder.group({
             
             name: ['', Validators.required],
-            prize: ['', Validators.required],
-            amount: ['', Validators.required],
             ticketprice: ['', Validators.required],
             fastfivewinners: ['', Validators.required],
-            fastfiveprizevalue: ['', Validators.required],
+            fastprizevalue: ['', Validators.required],
             fourcornerswinners: ['', Validators.required],
-            fourcornersprizevalue: ['', Validators.required],
+            fourcornersvalue: ['', Validators.required],
             firstrowwinners: ['', Validators.required],
-            firstrowprizevalue: ['', Validators.required],
-			
-            secondrowwinners: ['', Validators.required],
-            secondrowprizevalue: ['', Validators.required],
+            firstrowvalue: ['', Validators.required],
+			      secondrowwinners: ['', Validators.required],
+            secondrowvalue: ['', Validators.required],
             thirdrowwinners: ['', Validators.required],
-            thirdrowprizevalue: ['', Validators.required],
+            thirdrowvalue: ['', Validators.required],
             fullhousewinners: ['', Validators.required],
-            fullhouseprizevalue: ['', Validators.required],
+            fullhousevalue: ['', Validators.required],
             multipletickets: ['', Validators.required],
             totaltickets: ['', Validators.required],
-            regclosedate: ['', Validators.required],
-            startdate: ['', Validators.required],
-            tournamenttype: ['', Validators.required],
-			
-            fastfivewinnersfrom: ['', Validators.required],
-            fastfivewinnersto: ['', Validators.required],
-            fastfivewinnersamount: ['', Validators.required],
-			
-            fourcornerswinnersfrom: ['', Validators.required],
-            fourcornerswinnersto: ['', Validators.required],
-            fourcornerswinnersamount: ['', Validators.required],
-			
-            firstrowwinnersfrom: ['', Validators.required],
-            firstrowwinnersto: ['', Validators.required],
-            firstrowwinnersamount: ['', Validators.required],
-			
-            secondrowwinnersfrom: ['', Validators.required],
-            secondrowwinnersto: ['', Validators.required],
-            secondrowwinnersamount: ['', Validators.required],
-			
-            thirdrowwinnersfrom: ['', Validators.required],
-            thirdrowwinnersto: ['', Validators.required],
-            thirdrowwinnersamount: ['', Validators.required],
-			
-            fullhousewinnersfrom: ['', Validators.required],
-            fullhousewinnersto: ['', Validators.required],
-            fullhousewinnersamount: ['', Validators.required],
+            registrationenddate: [{ value: '', disabled: true }, Validators.required],
+            startdate: [{ value: '', disabled: true }, Validators.required],
+            
            
         });
+        this.form.get('startdate').setValue(new Date()),
+        this.form.get('registrationenddate').setValue(new Date()),
+        this.form.get('startdate').enable();
+        this.form.get('registrationenddate').enable();
   }
   get f() { return this.form.controls; }
   onSubmit() {
-		//this.showotpForm  = false;
-        this.submitted = true;
+		    this.submitted = true;
+       this.alertService.clear();
+      
 
-        // reset alerts on submit
-        this.alertService.clear();
-
-        // stop here if form is invalid
-		
         if (this.form.invalid) {
+          console.log('this.form.z',this.form.value)
             return;
         }else{
 			//this.showotpForm  = true;
-			this.accountService.otp(this.form.value)
+			this.accountService.tournamentsCreate(this.form.value)
 			.pipe(first())
-			.subscribe({
-                next: () => {
-					
-                    //this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-                    //this.router.navigate(['../login'], { relativeTo: this.route });
-					
-                },
-                error: error => {
-					console.log(error)
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
-            });
+          .subscribe((datasubmit:any)=>{
+                     console.log('join',datasubmit)
+                     if(datasubmit.error==false){
+                        this.loading = false;
+                        let title ='';
+                        let desc = 'Tourney Created Succuessfuly';
+                        this.tosstersuccess(title,desc)
+                        setTimeout(()=>{
+                          this.router.navigate(['/dashboard/']);	 
+                          },1000); 
+                    
+                     }else{
+                      let title ='';
+                      let desc = 'Oops wrong.. Try again later';
+                      this.tossterwarning(title,desc)
+                     }
+       
+              }, (err) => {
+                console.log(err);
+              });
 		}	
 
        // this.loading = true;
     
 		
     }
+ onlyNumberKey(event) {
+      return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57;
+  }
 
+  tossterwarning(title,desc){
+    this.toastr.warning(desc, title);
+  }
+  tosstererror(title,desc){
+    this.toastr.error(desc, title);
+  }
+  tosstersuccess(title,desc){
+    this.toastr.success(desc, title);
+  }
+  tossterinfo(title,desc){
+    this.toastr.info(desc, title);
+  }
+  
 }
