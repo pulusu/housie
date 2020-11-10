@@ -21,25 +21,27 @@
     <div class="col-md-4">
         <div class="time-sec"> Date: {{date   | date: "MMM d, yyyy"}}
             | Time: {{date   | date: "HH:mm:ss"}}</div>
-<div class="user-sec">
-    <a class="menu-click" (click)="togglemenu()" ><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-
-                <div class="navbar-nav" *ngIf="showMyContainer">
+        <div class="user-sec">
+            <a class="menu-click" [matMenuTriggerFor]="menu"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+            <mat-menu class="navbar-nav" #menu="matMenu">
                 <a class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
                 <a class="nav-item nav-link" routerLink="/users/edit/{{user.id}}" routerLinkActive="active">Edit Profile</a>
                 <a class="nav-item nav-link" routerLink="/my-tournaments" routerLinkActive="active">My Tournaments</a>
-				<a *ngIf="isAdmin" class="nav-item nav-link" routerLink="/tournaments-list" routerLinkActive="active">All Tournaments</a>
+                <a *ngIf="isAdmin" class="nav-item nav-link" routerLink="/tournaments-list" routerLinkActive="active">All Tournaments</a>
                 <a *ngIf="isAdmin" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
                 <a class="nav-item nav-link" routerLink="/how-to-play" routerLinkActive="active">How to Play?</a>
-				<a class="nav-item nav-link" routerLink="/about-us" routerLinkActive="active">About Us</a>
+                <a class="nav-item nav-link" routerLink="/about-us" routerLinkActive="active">About Us</a>
                 <a class="nav-item nav-link" (click)="logout()">Logout</a>
                   
-            </div>
+            </mat-menu>
+           
+                
         </div>
 
     </div>
 </div>
 </nav>
+
 
 <!-- main app container -->
 <div class="app-container" [ngClass]="{ 'bg-light': user }" >

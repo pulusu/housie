@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
      
       }
     @HostListener('document:click', ['$event'])
-    documentClick(event: MouseEvent) {
+    documentClick(event: any) {
         this.accountService.user.subscribe(x => this.user = x);
         this.user = this.accountService.userValue;
         if(this.user){
@@ -43,11 +43,10 @@ export class AppComponent implements OnInit {
         }else{
             this.isAdmin = false;
         }
-       
-        if(event['path'][1]['className'] != 'menu-click'){ 
-            this.showMyContainer = false; 
+        console.log('event',this.showMyContainer)
+        if(this.showMyContainer){
+           // this.showMyContainer = !this.showMyContainer;
         }
-             
 
     }
     togglemenu() {
