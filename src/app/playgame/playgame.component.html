@@ -1,13 +1,6 @@
 <div class="container-fluid">
     
-        <div class="row">
-            <div class="col-md-12">
-                <div class="main-title">
-            <h2>Tourney : {{tname}}</h2>
-           <!-- <p class="text-center">Total Seconds: {{seconds}}</p>-->
-            </div>
-        </div>
-    </div>
+      
     
 <div class="row">
     <div class="col-md-6" >
@@ -15,135 +8,138 @@
             <div class="card-body">
                 <div>
                     <div class="n-board">
-                        <a (click)="showMyContainer=!showMyContainer" class="btn btn-warning">Housie Board</a>
+                        <a [matMenuTriggerFor]="menuboard" class="btn btn-warning">Housie Board</a>
 						 <a (click)="isMobile=!isMobile" class="btn btn-warning win-mobile">Winner Board</a>
-                        <div class="table-responsive" *ngIf="showMyContainer">
-                            <table class="tablesaw table-striped  table-bordered table " >
-                                
-                                <tbody>
-                                    <tr>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('1') > -1)}">1</td>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('2') > -1)}">2</td>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('3') > -1)}">3</td>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('4') > -1)}">4</td>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('5') > -1)}">5</td>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('6') > -1)}">6</td>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('7') > -1)}">7</td>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('8') > -1)}">8</td>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('9') > -1)}">9</td>
-                                         <td [ngClass]="{'newclass':(allnumbers.indexOf('10') > -1)}">10</td>
-                                     </tr>
-                                     <tr>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('11') > -1)}">11</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('12') > -1)}">12</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('13') > -1)}">13</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('14') > -1)}">14</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('15') > -1)}">15</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('16') > -1)}">16</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('17') > -1)}">17</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('18') > -1)}">18</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('19') > -1)}">19</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('20') > -1)}">20</td>
-                                      
-                                     </tr>
-                                     <tr>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('21') > -1)}">21</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('22') > -1)}">22</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('23') > -1)}">23</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('24') > -1)}">24</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('25') > -1)}">25</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('26') > -1)}">26</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('27') > -1)}">27</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('28') > -1)}">28</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('29') > -1)}">29</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('30') > -1)}">30</td>
-                                     </tr>
-                                     <tr>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('31') > -1)}">31</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('32') > -1)}">32</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('33') > -1)}">33</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('34') > -1)}">34</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('35') > -1)}">35</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('36') > -1)}">36</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('37') > -1)}">37</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('38') > -1)}">38</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('39') > -1)}">39</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('40') > -1)}">40</td>
-                                     </tr>
-                                     <tr>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('41') > -1)}">41</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('42') > -1)}">42</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('43') > -1)}">43</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('44') > -1)}">44</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('45') > -1)}">45</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('46') > -1)}">46</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('47') > -1)}">47</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('48') > -1)}">48</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('49') > -1)}">49</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('50') > -1)}">50</td>
-                                     </tr>
-                                     <tr>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('51') > -1)}">51</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('52') > -1)}">52</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('53') > -1)}">53</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('54') > -1)}">54</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('55') > -1)}">55</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('56') > -1)}">56</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('57') > -1)}">57</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('58') > -1)}">58</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('59') > -1)}">59</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('60') > -1)}">60</td>
-                                     </tr>
-                                     <tr>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('61') > -1)}">61</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('62') > -1)}">62</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('63') > -1)}">63</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('64') > -1)}">64</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('65') > -1)}">65</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('66') > -1)}">66</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('67') > -1)}">67</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('68') > -1)}">68</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('69') > -1)}">69</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('70') > -1)}">70</td>
-                                     </tr>
-                                    <tr>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('71') > -1)}">71</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('72') > -1)}">72</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('73') > -1)}">73</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('74') > -1)}">74</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('75') > -1)}">75</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('76') > -1)}">76</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('77') > -1)}">77</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('78') > -1)}">78</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('79') > -1)}">79</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('80') > -1)}">80</td>   
-                                    </tr>
-                                    <tr>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('81') > -1)}">81</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('82') > -1)}">82</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('83') > -1)}">83</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('84') > -1)}">84</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('85') > -1)}">85</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('86') > -1)}">86</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('87') > -1)}">87</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('88') > -1)}">88</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('89') > -1)}">89</td>
-                                        <td [ngClass]="{'newclass':(allnumbers.indexOf('90') > -1)}">90</td>   
-                                    </tr>   
+                         <mat-menu class="table-responsive" #menuboard="matMenu">
                             
-                     
-                                   
-                                </tbody>
-                            </table>
-                        </div>
+                                <table class="tablesaw table-striped  table-bordered table "  *ngIf="allnumbers">
+                                    
+                                    <tbody>
+                                        <tr>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('1') > -1)}">1</td>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('2') > -1)}">2</td>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('3') > -1)}">3</td>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('4') > -1)}">4</td>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('5') > -1)}">5</td>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('6') > -1)}">6</td>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('7') > -1)}">7</td>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('8') > -1)}">8</td>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('9') > -1)}">9</td>
+                                             <td [ngClass]="{'newclass':(allnumbers.indexOf('10') > -1)}">10</td>
+                                         </tr>
+                                         <tr>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('11') > -1)}">11</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('12') > -1)}">12</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('13') > -1)}">13</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('14') > -1)}">14</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('15') > -1)}">15</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('16') > -1)}">16</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('17') > -1)}">17</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('18') > -1)}">18</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('19') > -1)}">19</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('20') > -1)}">20</td>
+                                          
+                                         </tr>
+                                         <tr>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('21') > -1)}">21</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('22') > -1)}">22</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('23') > -1)}">23</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('24') > -1)}">24</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('25') > -1)}">25</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('26') > -1)}">26</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('27') > -1)}">27</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('28') > -1)}">28</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('29') > -1)}">29</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('30') > -1)}">30</td>
+                                         </tr>
+                                         <tr>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('31') > -1)}">31</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('32') > -1)}">32</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('33') > -1)}">33</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('34') > -1)}">34</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('35') > -1)}">35</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('36') > -1)}">36</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('37') > -1)}">37</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('38') > -1)}">38</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('39') > -1)}">39</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('40') > -1)}">40</td>
+                                         </tr>
+                                         <tr>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('41') > -1)}">41</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('42') > -1)}">42</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('43') > -1)}">43</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('44') > -1)}">44</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('45') > -1)}">45</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('46') > -1)}">46</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('47') > -1)}">47</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('48') > -1)}">48</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('49') > -1)}">49</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('50') > -1)}">50</td>
+                                         </tr>
+                                         <tr>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('51') > -1)}">51</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('52') > -1)}">52</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('53') > -1)}">53</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('54') > -1)}">54</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('55') > -1)}">55</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('56') > -1)}">56</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('57') > -1)}">57</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('58') > -1)}">58</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('59') > -1)}">59</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('60') > -1)}">60</td>
+                                         </tr>
+                                         <tr>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('61') > -1)}">61</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('62') > -1)}">62</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('63') > -1)}">63</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('64') > -1)}">64</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('65') > -1)}">65</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('66') > -1)}">66</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('67') > -1)}">67</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('68') > -1)}">68</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('69') > -1)}">69</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('70') > -1)}">70</td>
+                                         </tr>
+                                        <tr>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('71') > -1)}">71</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('72') > -1)}">72</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('73') > -1)}">73</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('74') > -1)}">74</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('75') > -1)}">75</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('76') > -1)}">76</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('77') > -1)}">77</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('78') > -1)}">78</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('79') > -1)}">79</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('80') > -1)}">80</td>   
+                                        </tr>
+                                        <tr>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('81') > -1)}">81</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('82') > -1)}">82</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('83') > -1)}">83</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('84') > -1)}">84</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('85') > -1)}">85</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('86') > -1)}">86</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('87') > -1)}">87</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('88') > -1)}">88</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('89') > -1)}">89</td>
+                                            <td [ngClass]="{'newclass':(allnumbers.indexOf('90') > -1)}">90</td>   
+                                        </tr>   
+                                
+                         
+                                       
+                                    </tbody>
+                                </table>
+                            
+                         </mat-menu>
+                        
                     </div>
-                <div class="row align-items-center">
+                <div class="row bg-white align-items-center">
                 <div class="col-md-6">
                     
                     <div class="time-left">
                       
                    
-                    <div >
+                    <div *ngIf="remaintime">
                         <countdown [config]="{ leftTime: remaintime, format: 'm:s' }"></countdown>
                       </div>
                     </div>
@@ -156,8 +152,8 @@
                         [radius]="50"
                         [outerStrokeWidth]="8"
                         [innerStrokeWidth]="4"
-                        [outerStrokeColor]="'#dfc180'"
-                        [innerStrokeColor]="'#0275d8'"
+                        [outerStrokeColor]="'#0d2144'"
+                        [innerStrokeColor]="'#ffffff'"
                         [animation]="false"
                         
                         >
@@ -176,7 +172,7 @@
                 </div> 
                
             </div>    
-                <hr>    
+                   
        <div class="row win-mobile-sec" *ngIf="isMobile">
         <div class="col-md-12" >
             <div class="winner">
@@ -184,34 +180,41 @@
                     <div class="checkmark_stem"></div>
                     <div class="checkmark_kick"></div>
                 </span>-->
-            <div>
+            <div *ngIf="fastFivewinner">
             <h4>Fast Five - <span>{{outofffaastfive}}</span></h4>
             <span class="fastfive_winners_list" *ngFor="let ffive of fastFivewinner.slice(0, 2);">{{ffive.rank}}) {{ffive.customers[0].displayname}} </span>
             <span *ngIf="fastFivewinner.length == 0" >NA</span>
             </div>
             </div>
-            <div class="winner">
+            <div class="winner" *ngIf="firstRowwinner">
             <div>
             <h4>First Row - <span>{{outofffirstRow}}</span></h4>
             <span class="firstrow_winners_list" *ngFor="let fr of firstRowwinner.slice(0, 2);">{{fr.rank}}) {{fr.customers[0].displayname}} </span>
             <span *ngIf="firstRowwinner.length == 0" >NA</span>
             </div>
             </div>
-            <div class="winner">
+            <div class="winner" *ngIf="secondRowwinner">
             <div>
             <h4>Second Row - <span>{{outoffsecondRow}}</span></h4>
             <span class="secondrow_winners_list" *ngFor="let scw of secondRowwinner.slice(0, 2);">{{scw.rank}}) {{scw.customers[0].displayname}} </span>
             <span *ngIf="secondRowwinner.length == 0" >NA</span>
             </div>
             </div>
-            <div class="winner">
+            <div class="winner" *ngIf="thirdRowwinner">
             <div>
             <h4>Third Row - <span>{{outoffthirdRow}}</span></h4>
             <span class="thirdrow_winners_list" *ngFor="let th of thirdRowwinner.slice(0, 2);">{{th.rank}}) {{th.customers[0].displayname}} </span>
             <span *ngIf="thirdRowwinner.length == 0" >NA</span>
            </div>
            </div>
-            <div class="winner">
+            <div class="winner" *ngIf="fullHousiewinner">
+            <div>
+             <h4> Four Corners - <span>{{outofffourCorners}}</span></h4>
+            <span class="fullhouse_winners_list" *ngFor="let frh of fourCornerswinner.slice(0, 2); ifEmpty emptyTemplate">{{frh.rank}}) {{frh.customers[0].displayname}} </span>
+            <span *ngIf="fourCornerswinner.length == 0" >NA</span>
+        </div>
+        </div>
+        <div class="winner" *ngIf="fullHousiewinner">
             <div>
              <h4> Full Houise Row - <span>{{outofffullHousie}}</span></h4>
             <span class="fullhouse_winners_list" *ngFor="let fh of fullHousiewinner.slice(0, 2); ifEmpty emptyTemplate">{{fh.rank}}) {{fh.customers[0].displayname}} </span>
@@ -228,7 +231,7 @@
             <div class="card-body">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="t-title">Tickets</h2>
+                <h2 class="t-title">Tourney : {{tname}}</h2>
             </div>
         </div>
 
@@ -240,9 +243,9 @@
                 <table id="{{mytickets[a]._id}}">
                     <tr *ngFor='let in of [0,1,2]; let m = index'>
                         <td *ngFor='let in of [0,1,2,3,4,5,6,7,8]; let i = index' class="{{ 'donenumber_' + m }}" [ngSwitch]='m'>
-                               <div *ngSwitchCase="'0'" class="{{m}}_{{mytickets[a]._id}}" (click)="clickedvalue($event,myticket[i],0,i+1,mytickets[a]._id)" [ngClass]="{'sel_active': allcolumnres[a][i] == myticket[i] && allcolumnres[a][i] != 0}"><ng-template [ngIf]="myticket[i] != '0'">{{myticket[i]}}</ng-template></div>
-                               <div *ngSwitchCase="'1'" class="{{m}}_{{mytickets[a]._id}}" (click)="clickedvalue($event,myticket[i+9],1,i+10,mytickets[a]._id)" [ngClass]="{'sel_active': allcolumnres[a][i+9] == myticket[i+9] && allcolumnres[a][i+9] != 0}"><ng-template [ngIf]="myticket[i+9] != '0'"  >{{myticket[i+9]}}</ng-template></div>
-                               <div *ngSwitchCase="'2'" class="{{m}}_{{mytickets[a]._id}}" (click)="clickedvalue($event,myticket[i+18],2,i+19,mytickets[a]._id)" [ngClass]="{'sel_active': allcolumnres[a][i+18] === myticket[i+18] && allcolumnres[a][i+18] != 0}"><ng-template [ngIf]="myticket[i+18] != '0'" >{{myticket[i+18]}}</ng-template></div>
+                               <div *ngSwitchCase="'0'" class="{{m}}_{{mytickets[a]._id}}" (click)="clickedvalue($event,myticket[i],0,i+1,mytickets[a]._id)" [ngClass]="{'sel_active': allcolumnres[a][i] == myticket[i] && allcolumnres[a][i] != 0}" [attr.data-loc]=myticket[i]><ng-template [ngIf]="myticket[i] != '0'">{{myticket[i]}}</ng-template></div>
+                               <div *ngSwitchCase="'1'" class="{{m}}_{{mytickets[a]._id}}" (click)="clickedvalue($event,myticket[i+9],1,i+10,mytickets[a]._id)" [ngClass]="{'sel_active': allcolumnres[a][i+9] == myticket[i+9] && allcolumnres[a][i+9] != 0}" [attr.data-loc]="myticket[i+9]"><ng-template [ngIf]="myticket[i+9] != '0'"  >{{myticket[i+9]}}</ng-template></div>
+                               <div *ngSwitchCase="'2'" class="{{m}}_{{mytickets[a]._id}}" (click)="clickedvalue($event,myticket[i+18],2,i+19,mytickets[a]._id)" [ngClass]="{'sel_active': allcolumnres[a][i+18] === myticket[i+18] && allcolumnres[a][i+18] != 0}" [attr.data-loc]="myticket[i+18]"><ng-template [ngIf]="myticket[i+18] != '0'" >{{myticket[i+18]}}</ng-template></div>
                        </td>
                     </tr>
                     
@@ -252,10 +255,11 @@
             <div class="col-md-3" >
                 <div class="win-select">
                 <ul>
-                    <li [ngClass]="{'selected': mytickets[a].columnwon3 === 1}" (click)="getcount($event, mytickets[a]._id,3)"> Fast Five </li>    
-                    <li [ngClass]="{'selected': mytickets[a].columnwon0 === 1}" (click)="getcount($event,mytickets[a]._id,0)"> First Row</li> 
+                    <li [ngClass]="{'selected': mytickets[a].columnwon3 === 1}" (click)="getcount($event, mytickets[a]._id,3)" disabled="{{claim_status_fastFive}}"> Fast Five </li>    
+                    <li [ngClass]="{'selected': mytickets[a].columnwon0 === 1}" (click)="getcount($event,mytickets[a]._id,0)" > First Row</li> 
                     <li [ngClass]="{'selected': mytickets[a].columnwon1 === 1}" (click)="getcount($event,mytickets[a]._id,1)"> Second Row</li>
                     <li [ngClass]="{'selected': mytickets[a].columnwon2 === 1}" (click)="getcount($event,mytickets[a]._id,2)"> Third Row</li> 
+                    <li [ngClass]="{'selected': mytickets[a].columnwon4 === 1}" (click)="getcount($event,mytickets[a]._id,4)"> Four Corners</li> 
                     <li [ngClass]="{'selected': mytickets[a].columnwon5 === 1}" (click)="getcount($event,mytickets[a]._id,5)"> Full Housie</li>              
                 </ul>
             </div>

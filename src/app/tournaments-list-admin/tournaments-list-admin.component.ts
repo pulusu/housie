@@ -24,9 +24,7 @@ export class TournamentsListAdminComponent implements OnInit {
           }   );
   }
 
-  deleteUser(id: string) {
-      const user = this.tournaments.find(x => x.id === id);
-      user.isDeleting = true;
+  deleteTourney(id: string) {
       this.accountService.delete(id)
           .pipe(first())
           .subscribe(() => this.tournaments = this.tournaments.filter(x => x.id !== id));

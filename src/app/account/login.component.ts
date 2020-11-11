@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import Speech from "speak-tts";
 
 import { AccountService, AlertService } from '@app/_services';
 
@@ -12,6 +13,12 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
 
+    html = "";
+  result = "";
+  speech: any;
+  speechData: any;
+
+
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
@@ -19,7 +26,36 @@ export class LoginComponent implements OnInit {
         private accountService: AccountService,
         private toastr: ToastrService,
         private alertService: AlertService
-    ) { }
+    ) { 
+        this.speech = new Speech(); 
+    if (this.speech.hasBrowserSupport()) {
+      // returns a boolean
+      console.log("speech synthesis supported");
+      this.speech
+        .init({
+          volume: 1,
+          lang: "en-GB",
+          rate: 1,
+          pitch: 1,
+          voice: "Google UK English Female",
+          splitSentences: true,
+          listeners: {
+            onvoiceschanged: voices => {
+              console.log("Event voiceschanged", voices);
+            }
+          }
+        })
+        .then(data => {
+          this.speechData = data;
+          data.voices.forEach(voice => {
+          //  console.log(voice.name + " " + voice.lang);
+          });
+        })
+        .catch(e => {
+          console.error("An error occured while initializing : ", e);
+        });
+    }
+    }
 
     ngOnInit() {
         this.form = this.formBuilder.group({
@@ -53,8 +89,10 @@ export class LoginComponent implements OnInit {
                         this.router.navigateByUrl(returnUrl);      
                       this.loading = false;
                       let title ='';
+                      let neme =data.response.name;
                       let desc ='LogedIn successfully';
                       this.tosstersuccess(title,desc)
+                      this.speachVoice('Welcome '+neme)
                     setTimeout(()=>{
                           //window.location.href = returnUrl;
                     },1000); 
@@ -87,4 +125,24 @@ export class LoginComponent implements OnInit {
       tossterinfo(title,desc){
         this.toastr.info(desc, title);
       }
+
+      speachVoice(value) {
+        this.html = "1";
+      
+        var temporalDivElement = document.createElement("div");
+        temporalDivElement.innerHTML = this.html;
+        this.result =value;
+        this.speech
+          .speak({
+            text: this.result
+          })
+          .then(() => {
+            console.log("Success !");
+          })
+          .catch(e => {
+            console.error("An error occurred :", e);
+          });
+      }
+      
+
 }

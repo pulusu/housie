@@ -35,7 +35,7 @@ a { cursor: pointer }
 }
 .app-container.bg-light{
     background: #080d1a !important;
-    padding-top: 20px;
+    padding-top: 55px;
 }
 body{
     background: #080d1a !important;   
@@ -134,12 +134,19 @@ select.form-control option{
     cursor: pointer;
     margin-bottom: 10px;
 }
+.logo{
+    text-align: center;
+}
 .logo h2{
     text-align: center;
-    color: #dfc180;
+    color: #ffffff;
     text-transform: uppercase;
-    font-family: fantasy;
     margin-bottom: 0px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 2px 10px;
+    background: #dfc180;;
+    
 }
 .wel-text{
     color: #dfc180;
@@ -154,7 +161,7 @@ select.form-control option{
     flex-direction: column;
     position: absolute;
     right: 0px;
-    z-index: 99;
+    z-index: 999;
     background: #fff;
     width: 40%;
     top: 40px;
@@ -221,7 +228,7 @@ text-align: left;
     a.menu-click{
         left: 15px;
         right:auto;
-        top: -98px;
+        top: -88px;
     }
 	
     
@@ -229,10 +236,7 @@ text-align: left;
 .table-bordered td , .table-bordered th {
     border:1px solid #aab3bd !important;
 }
-.logo {
-    border: 1px solid #dfc180;
-    padding: 2px;
-}
+
 .smallRadio .mat-radio-container{
     height: 10px;
     width: 10px;
@@ -250,4 +254,23 @@ text-align: left;
     width: 20px; 
     left: calc(50% - 10px); 
     top: calc(50% - 10px); 
+}
+.navbar h4{
+margin-bottom: 0px;
+line-height: 18px;
+}
+.action-sec{
+    display: flex;
+    align-items: center;
+}
+.action-sec select{
+    width:50%;
+    margin-right: 15px;
+}
+.action-sec button{
+    height:40px;
+}
+.mat-menu-content {
+    width: 140px;
+    padding: 15px;
 }

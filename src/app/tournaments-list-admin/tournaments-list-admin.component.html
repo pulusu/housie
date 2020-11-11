@@ -4,6 +4,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
+                        <div class="pull-right"><button routerLink="/tournament-add" class="btn btn-info">Add Tourney</button></div>
             <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -30,7 +31,7 @@
             
             <td>
                 <button routerLink="/tournament-edit/{{user._id}}"  class="btn btn-primary" >Edit</button>
-                <button (click)="joibGame($event, user)"  class="btn btn-danger" >Delete</button>
+                <button (click)="deleteTourney($event, user)"  class="btn btn-danger" >Delete</button>
               
             </td>
             

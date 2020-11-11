@@ -18,12 +18,12 @@
         <div class="card-body">
     <div class="row">
         <div class="col-md-12">
-            <p class="text-center">Start Date : {{tournamentDetails.startdate | date:'medium'}}</p>
+            <p class="text-center" *ngIf="tournamentDetails">Start Date : {{tournamentDetails.startdate | date:'medium'}}</p>
             <div class="time-left m-b-20">
                 <h3>Game Starts in</h3>
            
-            <div>
-                <countdown [config]="{ leftTime: remaintime, format: 'd:h:m:s' }"></countdown>
+            <div *ngIf="tournamentDetails">
+                <countdown [config]="{ leftTime: remaintime, format: 'm:s' }"></countdown>
               </div>
             </div>
               

@@ -33,7 +33,7 @@ export class StartGameComponent implements OnInit {
 
     ) {
     this.user = this.accountService.userValue;
-    console.log('user',this.user.id)
+   
   }
 
   ngOnInit(): void {
@@ -48,7 +48,6 @@ export class StartGameComponent implements OnInit {
       this.accountService.mytickets(obj)
           .pipe(first())
           .subscribe((mytickets:any)=>{
-            console.log('mytickets',mytickets)
           this.tournamentDetails = mytickets.response[0].tournament[0];
           var ticketsCount = mytickets.response[0].tickets.length;
           this.tname=this.tournamentDetails.name;
@@ -80,6 +79,7 @@ export class StartGameComponent implements OnInit {
           this.timerInterval = setInterval(() => {
             var now = new Date()
             var diffMs = (+startDate - +now) / 1000; 
+             this.remaintime=diffMs;
             if(diffMs<0){
               this.router.navigate(['/play-game/'+this.paramsid]);	 
 

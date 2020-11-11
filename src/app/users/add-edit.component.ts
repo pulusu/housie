@@ -72,6 +72,7 @@ export class AddEditComponent implements OnInit {
                     console.log('dob',x)
                     this.form.patchValue(x);
                     this.form.get('dob').setValue(new Date(x.dob))
+                    this.form.get('password').setValue('')
                     this.url = `${environment.apiUrl}/`+x.profileimage
                     console.log('dob',x)
                 });
@@ -124,7 +125,7 @@ export class AddEditComponent implements OnInit {
         .pipe(first())
         .subscribe((response:any) =>{
             if(response.error==false){
-                    this.router.navigate(['/users']);
+                    this.router.navigate(['/dashboard']);
               }else{
                 console.log(response);
                 this.loading = false;

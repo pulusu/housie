@@ -93,33 +93,31 @@ export class TournamentsEditAdminComponent implements OnInit {
         
   
           if (this.form.invalid) {
-            console.log('this.form.z',this.form.value)
-              return;
+                       return;
           }else{
-        //this.showotpForm  = true;
-        this.accountService.Tornamentupdate(this.id,this.form.value)
-        .pipe(first())
-            .subscribe((datasubmit:any)=>{
-                       console.log('join',datasubmit)
-                       if(datasubmit.error==false){
-                          this.loading = false;
-                          let title ='';
-                          let desc = 'Tourney Updated Succuessfuly';
-                          this.tosstersuccess(title,desc)
-                          setTimeout(()=>{
-                            this.router.navigate(['/dashboard/']);	 
-                            },1000); 
-                      
-                       }else{
-                        let title ='';
-                        let desc = 'Oops wrong.. Try again later';
-                        this.tossterwarning(title,desc)
-                       }
-         
-                }, (err) => {
-                  console.log(err);
-                });
-      }	
+                    this.accountService.Tornamentupdate(this.id,this.form.value)
+                    .pipe(first())
+                        .subscribe((datasubmit:any)=>{
+                                  console.log('join',datasubmit)
+                                  if(datasubmit.error==false){
+                                      this.loading = false;
+                                      let title ='';
+                                      let desc = 'Tourney Updated Succuessfuly';
+                                      this.tosstersuccess(title,desc)
+                                      setTimeout(()=>{
+                                        this.router.navigate(['/dashboard/']);	 
+                                        },1000); 
+                                  
+                                  }else{
+                                    let title ='';
+                                    let desc = 'Oops wrong.. Try again later';
+                                    this.tossterwarning(title,desc)
+                                  }
+                    
+                            }, (err) => {
+                              console.log(err);
+                            });
+          }	
   
          // this.loading = true;
       

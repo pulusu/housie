@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 import { AccountService, AlertService } from '@app/_services';
 
@@ -42,6 +43,7 @@ companies: company[] = [
         private route: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
+        private toastr: ToastrService,
         private alertService: AlertService
     ) { }
 
@@ -54,7 +56,7 @@ companies: company[] = [
             company: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]],
 			//confirmPassword: ['', Validators.compose([Validators.required])]
-			confirmpassword: ['', [Validators.required]]
+		//	confirmpassword: ['', [Validators.required]]
 			
         });
 		this.otpform = this.formBuilder.group({
@@ -77,24 +79,31 @@ companies: company[] = [
         // stop here if form is invalid
 		
         if (this.form.invalid) {
+            console.log('this.form',this.form)
             return;
         }else{
-			this.showotpForm  = true;
+			
 			this.accountService.otp(this.form.value)
 			.pipe(first())
-			.subscribe({
-                next: () => {
-					
-                    //this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-                    //this.router.navigate(['../login'], { relativeTo: this.route });
-					
+			.subscribe(
+                (res:any) => { 
+                    console.log(res);
+                        if(res.error == false)
+                        {
+                            this.showotpForm  = true;
+                        }
+                        else
+                        {
+                         let title ='';
+                         let desc =res.message;
+                         this.tossterwarning(title,desc)
+                        }					 
+                        
                 },
-                error: error => {
-					console.log(error)
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
-            });
+                error => {
+                        console.log(error);
+                        this.loading = false;
+                    });
 		}	
 
        // this.loading = true;
@@ -115,13 +124,10 @@ companies: company[] = [
     let firstArray = this.form.value;
     let secondArray = this.otpform.value;
 	
-	console.log('firstArray',firstArray)
-console.log('secondArray',secondArray)
+
 
 var obj3 = Object.assign({},firstArray, secondArray);  
 console.log('obj3',obj3)
-//obj3.created_by=this.currentTrackUser._id; 
-//console.log('this.obj3',thobj3)
 if (this.otpform.invalid) {
             return;
         }
@@ -135,16 +141,17 @@ if (this.otpform.invalid) {
 		
             .pipe(first())
             .subscribe(
-			res => { 
-					if(res['error'] == false)
+			(res:any) => { 
+					if(res.error == false)
 					{
 						this.router.navigate(['../login'], { relativeTo: this.route });
 					}
 					else
 					{
-			         var msg = res['message'];
-					 console.log('error message', msg);
-					 alert(msg);
+                        let title ='';
+                        let desc =res.message;
+                        this.tossterwarning(title,desc)
+                        
 					}					 
 					
             },
@@ -155,6 +162,18 @@ if (this.otpform.invalid) {
 	}
 		
     }
-	
+    
+    tossterwarning(title,desc){
+        this.toastr.warning(desc, title);
+      }
+      tosstererror(title,desc){
+        this.toastr.error(desc, title);
+      }
+      tosstersuccess(title,desc){
+        this.toastr.success(desc, title);
+      }
+      tossterinfo(title,desc){
+        this.toastr.info(desc, title);
+      }
 	
 }

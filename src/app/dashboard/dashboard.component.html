@@ -26,13 +26,12 @@
             <td>{{user.ticketprice}}</td>
             
             <td>
+                <div *ngIf="user.canJoin; then thenBlockJoin else elseBlockJoin"></div>
                 
-
-                <div *ngIf="user.orders; then thenBlock else elseBlock"></div>
-                <ng-template #thenBlock>
+                <div *ngIf="user.orders==true && user.status==1">
                     <button routerLink="/play-game/{{user._id}}" class="btn btn-success" >Start Game</button>
-                </ng-template>
-                <ng-template #elseBlock>
+                </div>    
+                <div class="action-sec" *ngIf="user.canJoin==true && user.orders==false && user.status==1">
                     <select (change)="handleChange($event.target.selectedIndex)" class="form-control">
                         <option value="">Select Tickets</option>
                         <option value="1">1</option>
@@ -40,7 +39,13 @@
                         <option value="3">3</option>
                     </select>
                     <button (click)="joibGame($event, user)" [disabled]="clicked" class="btn btn-success" >Join</button>
-                </ng-template>
+                </div>    
+                <div *ngIf="user.canJoin==false && user.orders==false && user.status==1">
+                    <button class="btn btn-info" >Registrations Closed</button>
+                </div>  
+                <div *ngIf="user.status==2">
+                    <button class="btn btn-info" >Game Completed <a  class="info" routerLink="/game-history/{{user._id}}">Winners</a></button>
+                </div>  
 
             </td>
             

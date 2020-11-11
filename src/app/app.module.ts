@@ -17,6 +17,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatetimepickerModule, MatNativeDatetimeModule } from "@mat-datetimepicker/core";
+import { MatMenuModule} from '@angular/material/menu';
+
 // used to create fake backend
 
  
@@ -51,6 +53,7 @@ import { from } from 'rxjs';
         CommonModule,
         MatInputModule,
         MatDialogModule,
+        MatMenuModule,
         MatDatepickerModule,
         MatNativeDatetimeModule,
         MatDatetimepickerModule,
@@ -69,7 +72,7 @@ import { from } from 'rxjs';
             innerStrokeWidth: 8,
             outerStrokeColor: "#78C000",
             innerStrokeColor: "#C7E596",
-            animationDuration: 300,
+            animationDuration: 600,
             showTitle:false,
             showUnits:false,
             showSubtitle:false
