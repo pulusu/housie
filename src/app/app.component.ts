@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
         }else{
             this.isAdmin = false;
         }
-        console.log('event',this.showMyContainer)
+       // console.log('event',this.showMyContainer)
         if(this.showMyContainer){
            // this.showMyContainer = !this.showMyContainer;
         }
