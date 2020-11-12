@@ -1,7 +1,7 @@
 ﻿
 <div class="card text-center">
    
-    <div class="card-body">
+    <div class="card-body" *ngIf="params=='login'">
         <h3 class="title-l">Login</h3>
         <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
@@ -23,7 +23,76 @@
                 </button>
             </div>
             <div class="form-group">
-              <p class="message">Need a Housie account? <a routerLink="../register">Create an account</a></p>              
+                <p class="message"> <a routerLink="/account/forgot-password">Forgot Password</a></p>  
+              <p class="message">Need a Housie account? <a routerLink="/account/register">Create an account</a></p>              
+            </div>
+        </form>
+    </div>
+    <div class="card-body" *ngIf="params=='verify-otp'">
+        <h3 class="title-l">Verify OTP</h3>
+        <form class="form" [formGroup]="formVerifyOtp" (ngSubmit)="onSubmitOTP()">
+            <div class="form-group">
+                <input type="text" placeholder="Enter OTP" formControlName="otp" class="form-control" [ngClass]="{ 'is-invalid': submitted && o.otp.errors }" />
+                <div *ngIf="submitted && o.otp.errors" class="invalid-feedback">
+                    <div *ngIf="o.otp.errors.required">OTP is required</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+            </div>
+            <div class="form-group">
+              <p class="message">Need a Housie account? <a routerLink="/account/register">Create an account</a></p>              
+            </div>
+        </form>
+    </div>
+    <div class="card-body" *ngIf="params=='forgot-password'">
+        <h3 class="title-l">Forgot Password</h3>
+        <form class="form" [formGroup]="formForgotPassword" (ngSubmit)="onSubmitForgotPassword()">
+            <div class="form-group">
+                <input type="text" placeholder="Mobile" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && fg.mobile.errors }" />
+                <div *ngIf="submitted && fg.mobile.errors" class="invalid-feedback">
+                    <div *ngIf="fg.mobile.errors.required">Mobile is required</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Send OTP
+                </button>
+            </div>
+            <div class="form-group">
+              <p class="message">Need a Housie account? <a routerLink="/account/register">Create an account</a></p>              
+            </div>
+        </form>
+    </div>
+    <div class="card-body" *ngIf="params=='change-password'">
+        <h3 class="title-l">Change Password</h3>
+        <form class="form" [formGroup]="changePasswordform" (ngSubmit)="changePasswordonSubmit()">
+            <div class="form-group">
+                <input type="password" placeholder="Password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && ch.password.errors }" />
+                <div *ngIf="submitted && ch.password.errors" class="invalid-feedback">
+                    <div *ngIf="ch.password.errors.required">Password is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Confirm Password" formControlName="cpassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && ch.cpassword.errors }" />
+                <div *ngIf="submitted && ch.cpassword.errors" class="invalid-feedback">
+                    <div *ngIf="ch.cpassword.errors.required">Confirm Password is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Submit
+                </button>
+            </div>
+            <div class="form-group">
+              <p class="message">Need a Housie account? <a routerLink="/account/register">Create an account</a></p>              
             </div>
         </form>
     </div>

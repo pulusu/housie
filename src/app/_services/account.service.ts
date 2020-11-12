@@ -101,6 +101,16 @@ export class AccountService {
     otp(user: User) {
         return this.http.post(`${environment.apiUrl}/users/sendOTPregister`, user);
     }
+    ForgotPassword(params: any) {
+        return this.http.post(`${environment.apiUrl}/users/forgot-password`, params);
+    }
+    VerifyOtp(params: any) {
+        console.log('paramsparams',params)
+        return this.http.post(`${environment.apiUrl}/users/verifyotp`, params);
+    }
+    changePassword(params: any) {
+        return this.http.put(`${environment.apiUrl}/users/change-password`, params);
+    }
     tourneysHistoryByUser(params) {
         return this.http.post<any>(`${environment.apiUrl}/orders/tourneysHistoryByUser`,params);
     }

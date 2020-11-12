@@ -255,7 +255,7 @@
             <div class="col-md-3" >
                 <div class="win-select">
                 <ul>
-                    <li [ngClass]="{'selected': mytickets[a].columnwon3 === 1}" (click)="getcount($event, mytickets[a]._id,3)" disabled="{{claim_status_fastFive}}"> Fast Five </li>    
+                    <li [ngClass]="{'selected': mytickets[a].columnwon3 === 1}" (click)="getcount($event, mytickets[a]._id,3)"> Fast Five </li>    
                     <li [ngClass]="{'selected': mytickets[a].columnwon0 === 1}" (click)="getcount($event,mytickets[a]._id,0)" > First Row</li> 
                     <li [ngClass]="{'selected': mytickets[a].columnwon1 === 1}" (click)="getcount($event,mytickets[a]._id,1)"> Second Row</li>
                     <li [ngClass]="{'selected': mytickets[a].columnwon2 === 1}" (click)="getcount($event,mytickets[a]._id,2)"> Third Row</li> 

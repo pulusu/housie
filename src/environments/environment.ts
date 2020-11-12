@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://13.126.232.19:4020'
-  //apiUrl: 'http://175.101.7.162:4020'
+  apiUrl: 'http://13.126.232.19:8010'
+ // apiUrl: 'http://175.101.7.162:4020'
 };
 
 /*
