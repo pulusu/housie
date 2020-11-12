@@ -10,14 +10,18 @@ import { AccountService, AlertService } from '@app/_services';
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
     form: FormGroup;
+    formForgotPassword: FormGroup;
+    formVerifyOtp : FormGroup;
+    changePasswordform : FormGroup;
     loading = false;
     submitted = false;
-
+    mobile = '';
     html = "";
   result = "";
+  paramsid='';
   speech: any;
   speechData: any;
-
+  params:any;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -27,6 +31,8 @@ export class LoginComponent implements OnInit {
         private toastr: ToastrService,
         private alertService: AlertService
     ) { 
+      
+      
         this.speech = new Speech(); 
     if (this.speech.hasBrowserSupport()) {
       // returns a boolean
@@ -41,7 +47,7 @@ export class LoginComponent implements OnInit {
           splitSentences: true,
           listeners: {
             onvoiceschanged: voices => {
-              console.log("Event voiceschanged", voices);
+             // console.log("Event voiceschanged", voices);
             }
           }
         })
@@ -56,17 +62,174 @@ export class LoginComponent implements OnInit {
         });
     }
     }
+    getUser(){
+      this.accountService.getById('5fa3c41357766b0c60f78bc9')
+      .pipe(first())
+      .subscribe(
+          (data:any)=> {
+             console.log('user-data',data)
+             this.mobile=data.mobile;
+          },
+          error => {
+              this.alertService.error(error);
+              this.loading = false;
+          }
+      );
+    }
 
     ngOnInit() {
+      console.log('params',this.route.snapshot.url)
+     
+      if(this.route.snapshot.url.length >0){
+      this.params = this.route.snapshot.url[0].path;
+      if(this.params == 'verify-otp'){
+       
+         this.paramsid = this.route.snapshot.url[1].path;
+         this.getUser();
+      }
+      if(this.params == 'change-password'){
+       
+         this.paramsid = this.route.snapshot.url[1].path;
+         this.getUser();
+      }
+
+      }
         this.form = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
+        });
+        this.formForgotPassword = this.formBuilder.group({
+          mobile: ['', Validators.required]
+        });
+        this.formVerifyOtp = this.formBuilder.group({
+          otp: ['', Validators.required]
+        });
+        this.changePasswordform = this.formBuilder.group({
+          password: ['', Validators.required],
+          cpassword: ['', Validators.required]
         });
     }
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
-
+    get fg() { return this.formForgotPassword.controls; }
+    get o() { return this.formVerifyOtp.controls; }
+    get ch() { return this.changePasswordform.controls; }
+    onSubmitForgotPassword(){
+      this.submitted = true;
+       if (this.formForgotPassword.invalid) {
+          return;
+       }
+       this.loading = true;
+       let obj = {};  
+       obj['mobile']=this.fg.mobile.value
+       this.accountService.ForgotPassword(obj)
+            .pipe(first())
+            .subscribe(
+                (data:any)=> {
+                    
+                    if(data.error==false){
+                      const returnUrl = '/account/verify-otp/'+data.userdetails.id;
+                      this.router.navigateByUrl(returnUrl);      
+                     console.log('data',data)
+                      this.loading = false;
+                      let title ='';
+                      let neme =data.otp_details;
+                      let desc =data.message+ ' Your registered email' ;
+                      this.tosstersuccess(title,desc)
+                     }else{
+                         this.loading = false;
+                         let title ='';
+                         let desc =data.message;
+                         this.tossterwarning(title,desc)
+                    }
+                 
+                },
+                error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                }
+            );
+       
+    }
+    onSubmitOTP(){
+      this.submitted = true;
+       if (this.formVerifyOtp.invalid) {
+          return;
+       }
+       this.loading = true;
+       let obj = {};  
+       obj['mobile']=this.mobile;
+       obj['otp']=this.o.otp.value;
+       this.accountService.VerifyOtp(obj)
+            .pipe(first())
+            .subscribe(
+                (data:any)=> {
+                    if(data.error==false){
+                      const returnUrl = '/account/change-password/'+this.paramsid;
+                      this.router.navigateByUrl(returnUrl);      
+                     console.log('data',data)
+                      this.loading = false;
+                      let title ='';
+                      let neme =data.otp_details;
+                      let desc =data.message;
+                      this.tosstersuccess(title,desc)
+                     }else{
+                         this.loading = false;
+                         let title ='';
+                         let desc =data.message;
+                         this.tossterwarning(title,desc)
+                    }
+                 
+                },
+                error => {
+                    this.loading = false;
+                }
+            );
+       
+    }
+    changePasswordonSubmit() {
+      this.submitted = true;
+      this.alertService.clear();
+      if (this.changePasswordform.invalid) {
+          return;
+      }else if(this.ch.password.value != this.ch.cpassword.value){
+        this.loading = false;
+        let title ='';
+        let desc ="Password , confirm password Not match";
+        this.tossterwarning(title,desc);
+        return;
+      }
+      this.loading = true;
+      let obj = {};  
+      obj['mobile']=this.mobile;
+      obj['password']=this.ch.password.value;
+      this.accountService.changePassword(obj)
+           .pipe(first())
+           .subscribe(
+               (data:any)=> {
+                   if(data.error==false){
+                     const returnUrl = '/account/login/';
+                     this.router.navigateByUrl(returnUrl);      
+                     this.loading = false;
+                     let title ='';
+                     let neme =data.otp_details;
+                     let desc ='Password changed successfully';
+                     this.tosstersuccess(title,desc)
+                    }else{
+                      console.log('dataerror',data)
+                        this.loading = false;
+                        let title ='';
+                        let desc =data.message;
+                        this.tossterwarning(title,desc)
+                   }
+                
+               },
+               error => {
+                   this.loading = false;
+               }
+           );
+    }
     onSubmit() {
         this.submitted = true;
 
@@ -93,12 +256,7 @@ export class LoginComponent implements OnInit {
                       let desc ='LogedIn successfully';
                       this.tosstersuccess(title,desc)
                       this.speachVoice('Welcome '+neme)
-                    setTimeout(()=>{
-                          //window.location.href = returnUrl;
-                    },1000); 
-
                     }else{
-                        //this.alertService.error(data.message);
                          this.loading = false;
                          let title ='';
                          let desc =data.message;
