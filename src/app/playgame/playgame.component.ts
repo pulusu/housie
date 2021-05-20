@@ -72,6 +72,8 @@ export class PlaygameComponent implements OnInit {
   claim_status_fastFive:boolean;
   duration :any;
   perNumber :any;
+  secsss:any;
+  secondsTimer:any;
 
   html = "";
   result = "";
@@ -103,14 +105,14 @@ export class PlaygameComponent implements OnInit {
           splitSentences: true,
           listeners: {
             onvoiceschanged: voices => {
-              console.log("Event voiceschanged", voices);
+              //console.log("Event voiceschanged", voices);
             }
           }
         })
         .then(data => {
           this.speechData = data;
           data.voices.forEach(voice => {
-            console.log(voice.name + " " + voice.lang);
+           // console.log(voice.name + " " + voice.lang);
           });
         })
         .catch(e => {
@@ -124,18 +126,11 @@ export class PlaygameComponent implements OnInit {
     this.isMobile = this.mobileWidth < this.width;
     this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss', 'en-US');
     var res= this.jstoday.slice(-2); 
-    this.duration = 2700;
+    this.duration = 1800;
     this.perNumber = (this.duration) / 90;
-    console.log('perNumberperNumber',res)
-    if(res >= this.perNumber){
-        this.tp = +res-this.perNumber;
-    }else{
-        this.tp = res;
-    }
+   
     
-    var p = ((this.tp/this.perNumber)*100).toFixed(3)
-    this.tp = parseFloat(p);
-    console.log('p',p)
+    
     this.paramsid = this.route.snapshot.params['id'];
     var obj = {};  
     obj['idcustomer']=this.user.id;
@@ -218,23 +213,44 @@ export class PlaygameComponent implements OnInit {
               this.timer = setInterval(() => {
               this.reamingTime(startDate,this.duration,this.perNumber)
               let minper =60/this.perNumber;
-                          this.tp=this.tp + minper;
+                          //this.tp=this.tp + minper;
                           if(this.tp>=100){
-                            this.tp=this.tp-99.95;
+                           // this.tp=this.tp-99.95;
                           } 
-                          console.log('this.tp',this.tp)
-                           
               }, 600);
-                      
+              var secsss = formatDate(new Date(), 'dd-MM-yyyy hh:mm:ss', 'en-US').slice(-2);
+              let a = parseInt(secsss)
+              var bs:number = a;
+                if(a < 20){
+                  bs=(a);
+                }else if(a >= 20 && a < 40){
+                  bs=(a - 20);
+                }else if(a >= 40 && a <=60){
+                  bs=(a - 40);
+                }
+                this.tp = bs * 5;
+              console.log('perNumberperNumber',this.tp)
+              console.log('perNumberperNumber-a',a)
+              this.secondsTimer = setInterval(() => {
+              var secsss = formatDate(new Date(), 'dd-MM-yyyy hh:mm:ss', 'en-US').slice(-2); 
+                   if(parseInt(secsss)  == 0 || parseInt(secsss)  == 10 || parseInt(secsss)  == 20 || parseInt(secsss)  == 30 || parseInt(secsss)  == 40 || parseInt(secsss)  == 50){
+                    this.start()
+                    console.log('this.tp speake', secsss)
+                    }
+                    this.tp=this.tp + 5;
+                    if(this.tp>=100){
+                       this.tp=0;
+                     }
+              console.log('this.tp',this.tp)
+              console.log('this-secsss',secsss)
+            }, 1000);    
     
           }, (err) => {
                 console.log(err);
               });
 
      
-             this.setVoice = setInterval(() => {
-                this.start()
-               }, 15000);  
+            
                         
   }
 
@@ -626,7 +642,12 @@ onWindowResize(event) {
 }
 ngOnDestroy() {
   // Will clear when component is destroyed e.g. route is navigated away from.
-  
+  if (this.timer) {
+    clearInterval(this.timer);
+  }
+  if (this.secondsTimer) {
+    clearInterval(this.secondsTimer);
+  }
   if (this.timerwinner) {
     clearInterval(this.timerwinner); 
   }

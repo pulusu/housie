@@ -62,8 +62,8 @@ export class LoginComponent implements OnInit {
         });
     }
     }
-    getUser(){
-      this.accountService.getById('5fa3c41357766b0c60f78bc9')
+    getUser(id){
+      this.accountService.getById(id)
       .pipe(first())
       .subscribe(
           (data:any)=> {
@@ -85,12 +85,13 @@ export class LoginComponent implements OnInit {
       if(this.params == 'verify-otp'){
        
          this.paramsid = this.route.snapshot.url[1].path;
-         this.getUser();
+
+         this.getUser(this.paramsid);
       }
       if(this.params == 'change-password'){
        
          this.paramsid = this.route.snapshot.url[1].path;
-         this.getUser();
+         this.getUser(this.paramsid);
       }
 
       }
@@ -161,6 +162,7 @@ export class LoginComponent implements OnInit {
        let obj = {};  
        obj['mobile']=this.mobile;
        obj['otp']=this.o.otp.value;
+       console.log('obj',obj)
        this.accountService.VerifyOtp(obj)
             .pipe(first())
             .subscribe(
@@ -267,6 +269,7 @@ export class LoginComponent implements OnInit {
                 },
                 error => {
                     this.alertService.error(error);
+                    console.log('error',error)
                     this.loading = false;
                 }
             );
